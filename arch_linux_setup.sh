@@ -6,7 +6,7 @@
 git clone https://aur.archlinux.org/aura-bin.git
 cd aura-bin || exit 1
 makepkg
-sudo pacman -U ./*.pkg.*
+pacman -U ./*.pkg.*
 cd ~ || exit 1
 rm -rf aura-bin
 ######## end #######
@@ -14,7 +14,7 @@ rm -rf aura-bin
 ####################
 ### Install FISH ###
 ####################
-sudo aura --noconfirm -Sy fish
+aura --noconfirm -Sy fish
 chsh -s /usr/bin/fish
 fish -C "set -U fish_greeting"
 ####### end ########
@@ -22,30 +22,30 @@ fish -C "set -U fish_greeting"
 ################################
 ### Install Xorg && LightDM ####
 ################################
-sudo aura --noconfirm -S lightdm xorg lightdm-webkit2-greeter
-sudo aura --noconfirm -A lightdm-webkit-theme-aether
+aura --noconfirm -S lightdm xorg lightdm-webkit2-greeter
+aura --noconfirm -A lightdm-webkit-theme-aether
 echo "Xcursor.size: 27" >>.Xresources
 echo "Xft.dpi: 108" >>.Xresources
-#echo "xrandr --output HDMI-0 --off --output HDMI-1 --off --output HDMI-2 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3440x1440 --pos 721x0 --rotate normal --output DP-3 --off --output DP-4 --mode 5120x1440 --pos 0x1440 --rotate normal --output DP-5 --off" | sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
-echo "xrandr -s 1920x1080" | sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
-sudo chmod +x /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
-sudo sed -i 's/#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
-sudo sed -i 's/#user-session=.*/user-session=awesome/' /etc/lightdm/lightdm.conf
-sudo systemctl enable lightdm
+#echo "xrandr --output HDMI-0 --off --output HDMI-1 --off --output HDMI-2 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3440x1440 --pos 721x0 --rotate normal --output DP-3 --off --output DP-4 --mode 5120x1440 --pos 0x1440 --rotate normal --output DP-5 --off" |  tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
+echo "xrandr -s 1920x1080" | tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
+chmod +x /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
+sed -i 's/#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
+sed -i 's/#user-session=.*/user-session=awesome/' /etc/lightdm/lightdm.conf
+systemctl enable lightdm
 ############## end #############
 
 #######################
 ### NVIDIA Drivers ####
 #######################
-# sudo aura --noconfirm -S nvidia "nvidia-xconfig"
+#  aura --noconfirm -S nvidia "nvidia-xconfig"
 # nvidia-xconfig
-sudo aura --noconfirm -S "xf86-video-fbdev"
+aura --noconfirm -S "xf86-video-fbdev"
 ######### end #########
 
 #####################################
 ### Install Programming Languages ###
 #####################################
-sudo aura --noconfirm -S go lua rustup yarn julia
+aura --noconfirm -S go lua rustup yarn julia
 yarn global add typescript
 rustup default stable
 ############### end #################
@@ -54,20 +54,20 @@ rustup default stable
 ### Install Awesome and all the Floppy dependencies ###
 #######################################################
 # core dependencies
-sudo aura --noconfirm -A awesome-git rofi-git picom-git
+aura --noconfirm -A awesome-git rofi-git picom-git
 # additional dependencies
-sudo aura --noconfirm -S inter-font pulseaudio alsa-utils pulseaudio-alsa feh maim xclip imagemagic blueman ffmpeg iproute2 iw thunar papirus-icon-theme
+aura --noconfirm -S inter-font pulseaudio alsa-utils pulseaudio-alsa feh maim xclip imagemagic blueman ffmpeg iproute2 iw thunar papirus-icon-theme
 # minor desktop changes
 # gnome theme
 curl --output Kripton.tar.xz https://dl2.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTY0MjM3Mjc4NSwidSI6bnVsbCwibHQiOiJkb3dubG9hZCIsInMiOiI3ZmU5NzhlNDc2YTBjYTZhZGE2N2E0NDI2ZGIyNDBmYjI5MTU0YjMxMzYzOGRhZTY2OGFhYWY0YjcxMDVkODZkYjZlYjgzY2YxODkxZDYwYmYyOTNjYWUyMzE5YjQzMGQyMGJmZGQ4ZTQxMzQyNGRlNmM1MGI2ZTBkNDkzYmYxNiIsInQiOjE2NDMyMDk5OTksInN0ZnAiOiJkYzMwOTA2ZmUwYTBiYTljNzYwODY3MjUwNTZlZTA0YSIsInN0aXAiOiIxMDkuMjQyLjIyNy4zMyJ9.biAd6dRZKl0aPzT7_syU_2mwviXz1UZYWivDxxud_oQ/Kripton.tar.xz
 tar -xf ./Kripton.tar.xz
-sudo mv ./Kripton /usr/share/themes/
+mv ./Kripton /usr/share/themes/
 rm -rf ./Kripton.tar.xz
 # cursor
 curl --output volantes_light_cursors.tar.gz https://dl1.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTU4MTIzMTM3MywidSI6bnVsbCwibHQiOiJkb3dubG9hZCIsInMiOiI4MTcxNzNkMjhmODBlYmU3YzNhZmEzZDEzM2JmZDljYjA1ODdkY2JhMjMxMmUyYTMyNTVhYzYyNzAyM2E3YzQ4YjE2ZjdlNTMxYmRhNGJkMzMxZjEyNWQzNDI3ODc5Mzg4NmZhODI3MTE2NTEyZTU4YTk3NTkxNjVjZjE2NzFlYiIsInQiOjE2NDMyMTM5MzIsInN0ZnAiOiJkYzMwOTA2ZmUwYTBiYTljNzYwODY3MjUwNTZlZTA0YSIsInN0aXAiOiIxMDkuMjQyLjIyNy4zMyJ9.0EagILZtheUNI0Q04V3g88TVuEExcJHcFfX1ChoiIow/volantes_light_cursors.tar.gz
-sudo tar -zxvf volantes_light_cursors.tar.gz -C "/usr/share/icons/"
-echo "[Icon Theme]" | sudo tee /usr/share/icons/default/index.theme
-echo "Inherits=volantes_light_cursors" | sudo tee -a /usr/share/icons/default/index.theme
+tar -zxvf volantes_light_cursors.tar.gz -C "/usr/share/icons/"
+echo "[Icon Theme]" | tee /usr/share/icons/default/index.theme
+echo "Inherits=volantes_light_cursors" | tee -a /usr/share/icons/default/index.theme
 rm -rf ./volantes_light_cursors.tar.gz
 # gtk theme
 mkdir .config/gtk-2.0 .config/gtk-3.0 .config/gtk-4.0
@@ -95,34 +95,34 @@ cp .config/gtk-2.0/setting.ini .config/gtk-4.0/settings.ini
 ############################
 ### Installing terminals ###
 ############################
-sudo aura --noconfirm -S kitty alacritty
+aura --noconfirm -S kitty alacritty
 ########### end ############
 
 ########################
 ### Installing Utils ###
 ########################
 # rust utils
-sudo aura --noconfirm -S exa fd ripgrep
+aura --noconfirm -S exa fd ripgrep
 # search / viewing
-sudo aura --noconfirm -S bat fzf peco htop openssh man-db neofetch netplan nvtop
+aura --noconfirm -S bat fzf peco htop openssh man-db neofetch netplan nvtop
 # zip utils
-sudo aura --noconfirm -S zip unzip
+aura --noconfirm -S zip unzip
 # xdg
-sudo aura --noconfirm -S xdg-utils xdg-user-dirs
+aura --noconfirm -S xdg-utils xdg-user-dirs
 ######## end ###########
 
 ########################
 ### Installing fonts ###
 ########################
-sudo aura --noconfirm -S "noto-fonts" "noto-fonts-emoji"
-sudo aura --noconfirm -A "nerd-fonts-fira-code"
+aura --noconfirm -S "noto-fonts" "noto-fonts-emoji"
+aura --noconfirm -A "nerd-fonts-fira-code"
 ######### end ##########
 
 ######################################
 ### Installing additional Programs ###
 ######################################
-sudo aura --noconfirm -S "signal-desktop" "github-cli" pavucontrol zathura mpv vlc zathura-pdf-poppler steam
-sudo aura --noconfirm -A "albert-bin" "brave-bin" "popcorntime-bin"
+aura --noconfirm -S "signal-desktop" "github-cli" pavucontrol zathura mpv vlc zathura-pdf-poppler steam
+aura --noconfirm -A "albert-bin" "brave-bin" "popcorntime-bin"
 yarn global add webtorrent-cli
 # nextcloud
 if [[ ! -d ".local/bin" ]]; then
@@ -137,7 +137,7 @@ cd ~ || exit 1
 #################
 ### PhotoGIMP ###
 #################
-sudo aura -S "gimp"
+aura -S "gimp"
 curl https://codeload.github.com/Diolinux/PhotoGIMP/tar.gz/refs/tags/1.0 --output PhotoGIMP.tar.gz
 tar -xf ./PhotoGIMP.tar.gz
 rm ./PhotoGIMP.tar.gz
@@ -162,7 +162,7 @@ fi
 ### Text Editor Setup ###
 #########################
 # neovim
-sudo aura --noconfirm -S neovim
+aura --noconfirm -S neovim
 # lvim
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 # formatters
@@ -172,7 +172,7 @@ pip install git+https://github.com/psf/black
 cargo install stylua
 # linters
 pip install flake8 codespell
-sudo aura --noconfirm -S shellcheck
+aura --noconfirm -S shellcheck
 go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.43.0@latest
 # julia language server
 mkdir -p ~/.julia/environments

@@ -3,11 +3,11 @@
 ####################
 ### Base Install ###
 ####################
-git clone -b server https://www.github.com/christitustech/archtitus
+git clone -b server https://github.com/christitustech/archtitus
 cd archtitus || exit 1
 ./archtitus.sh
 cd ..
-new_home="/home/$(ls /home)"
+new_home="/mnt/home/$(ls /mnt/home)"
 cp ./arch_linux_setup.sh "$new_home"
 echo "$new_home/arch_linux_setup" >>"$new_home/.bashrc"
 echo "this is the new home directory: $new_home"
