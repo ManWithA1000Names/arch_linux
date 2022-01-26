@@ -3,16 +3,20 @@
 ####################
 ### Base Install ###
 ####################
-pacman -Sy git
 git clone -b server https://www.github.com/christitustech/archtitus
 cd archtitus || exit 1
 ./archtitus.sh
-echo "$HOME/arch_linux/arch_linux_setup" >>.bashrc
+cd ..
+new_home="/home/$(ls /home)"
+cp ./arch_linux_setup.sh "$new_home"
+echo "$new_home/arch_linux_setup" >>"$new_home/.bashrc"
 ####### end ########
 
 ###############################
 # reboot needs to happen here #
 ###############################
+echo ""
+echo ""
 echo ""
 echo -n "Shutdown to remove installation media and start setup script? [Y/n]: "
 read -r reboot_now
