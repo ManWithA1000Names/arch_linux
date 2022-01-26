@@ -10,6 +10,7 @@ cd ..
 new_home="/home/$(ls /home)"
 cp ./arch_linux_setup.sh "$new_home"
 echo "$new_home/arch_linux_setup" >>"$new_home/.bashrc"
+echo "this is the new home directory: $new_home"
 ####### end ########
 
 ###############################
