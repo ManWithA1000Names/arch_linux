@@ -9,7 +9,7 @@ cd archtitus || exit 1
 cd ..
 new_user="$(ls /mnt/home)"
 new_home="/mnt/home/$new_user"
-cp ./arch_linux_setup.sh "$new_home"
+cp ~/arch_linux/arch_linux_setup.sh "$new_home"
 echo "/home/$new_user/arch_linux_setup" >>"$new_home/.bashrc"
 ####### end ########
 
