@@ -7,10 +7,10 @@ git clone -b server https://github.com/christitustech/archtitus
 cd archtitus || exit 1
 ./archtitus.sh
 cd ..
-new_home="/mnt/home/$(ls /mnt/home)"
+new_user="$(ls /mnt/home)"
+new_home="/mnt/home/$new_user"
 cp ./arch_linux_setup.sh "$new_home"
-echo "$new_home/arch_linux_setup" >>"$new_home/.bashrc"
-echo "this is the new home directory: $new_home"
+echo "/home/$new_user/arch_linux_setup" >>"$new_home/.bashrc"
 ####### end ########
 
 ###############################
