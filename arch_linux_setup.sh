@@ -1,12 +1,12 @@
 #!/bin/bash
 
 ####################
-### Install Aura ###
+### Install aura ###
 ####################
 git clone https://aur.archlinux.org/aura-bin.git
 cd aura-bin || exit 1
 makepkg
-pacman -U ./*.pkg.*
+sudo pacman -U ./*.pkg.*
 cd ~ || exit 1
 rm -rf aura-bin
 ######## end #######
@@ -14,7 +14,7 @@ rm -rf aura-bin
 ####################
 ### Install FISH ###
 ####################
-aura --noconfirm -Sy fish
+sudo aura --noconfirm -Sy fish
 chsh -s /usr/bin/fish
 fish -C "set -U fish_greeting"
 ####### end ########
@@ -22,8 +22,8 @@ fish -C "set -U fish_greeting"
 ################################
 ### Install Xorg && LightDM ####
 ################################
-aura --noconfirm -S lightdm xorg lightdm-webkit2-greeter
-aura --noconfirm -A lightdm-webkit-theme-aether
+sudo aura --noconfirm -S lightdm xorg lightdm-webkit2-greeter
+sudo aura --noconfirm -A lightdm-webkit-theme-aether
 echo "Xcursor.size: 27" >>.Xresources
 echo "Xft.dpi: 108" >>.Xresources
 #echo "xrandr --output HDMI-0 --off --output HDMI-1 --off --output HDMI-2 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3440x1440 --pos 721x0 --rotate normal --output DP-3 --off --output DP-4 --mode 5120x1440 --pos 0x1440 --rotate normal --output DP-5 --off" |  tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
@@ -37,15 +37,15 @@ systemctl enable lightdm
 #######################
 ### NVIDIA Drivers ####
 #######################
-#  aura --noconfirm -S nvidia "nvidia-xconfig"
+#  sudo aura --noconfirm -S nvidia "nvidia-xconfig"
 # nvidia-xconfig
-aura --noconfirm -S "xf86-video-fbdev"
+sudo aura --noconfirm -S "xf86-video-fbdev"
 ######### end #########
 
 #####################################
 ### Install Programming Languages ###
 #####################################
-aura --noconfirm -S go lua rustup yarn julia
+sudo aura --noconfirm -S go lua rustup yarn julia
 yarn global add typescript
 rustup default stable
 ############### end #################
@@ -54,9 +54,9 @@ rustup default stable
 ### Install Awesome and all the Floppy dependencies ###
 #######################################################
 # core dependencies
-aura --noconfirm -A awesome-git rofi-git picom-git
+sudo aura --noconfirm -A awesome-git rofi-git picom-git
 # additional dependencies
-aura --noconfirm -S inter-font pulseaudio alsa-utils pulseaudio-alsa feh maim xclip imagemagic blueman ffmpeg iproute2 iw thunar papirus-icon-theme
+sudo aura --noconfirm -S inter-font pulseaudio alsa-utils pulseaudio-alsa feh maim xclip imagemagic blueman ffmpeg iproute2 iw thunar papirus-icon-theme
 # minor desktop changes
 # gnome theme
 curl --output Kripton.tar.xz https://dl2.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTY0MjM3Mjc4NSwidSI6bnVsbCwibHQiOiJkb3dubG9hZCIsInMiOiI3ZmU5NzhlNDc2YTBjYTZhZGE2N2E0NDI2ZGIyNDBmYjI5MTU0YjMxMzYzOGRhZTY2OGFhYWY0YjcxMDVkODZkYjZlYjgzY2YxODkxZDYwYmYyOTNjYWUyMzE5YjQzMGQyMGJmZGQ4ZTQxMzQyNGRlNmM1MGI2ZTBkNDkzYmYxNiIsInQiOjE2NDMyMDk5OTksInN0ZnAiOiJkYzMwOTA2ZmUwYTBiYTljNzYwODY3MjUwNTZlZTA0YSIsInN0aXAiOiIxMDkuMjQyLjIyNy4zMyJ9.biAd6dRZKl0aPzT7_syU_2mwviXz1UZYWivDxxud_oQ/Kripton.tar.xz
@@ -95,34 +95,34 @@ cp .config/gtk-2.0/setting.ini .config/gtk-4.0/settings.ini
 ############################
 ### Installing terminals ###
 ############################
-aura --noconfirm -S kitty alacritty
+sudo aura --noconfirm -S kitty alacritty
 ########### end ############
 
 ########################
 ### Installing Utils ###
 ########################
 # rust utils
-aura --noconfirm -S exa fd ripgrep
+sudo aura --noconfirm -S exa fd ripgrep
 # search / viewing
-aura --noconfirm -S bat fzf peco htop openssh man-db neofetch netplan nvtop
+sudo aura --noconfirm -S bat fzf peco htop openssh man-db neofetch netplan nvtop
 # zip utils
-aura --noconfirm -S zip unzip
+sudo aura --noconfirm -S zip unzip
 # xdg
-aura --noconfirm -S xdg-utils xdg-user-dirs
+sudo aura --noconfirm -S xdg-utils xdg-user-dirs
 ######## end ###########
 
 ########################
 ### Installing fonts ###
 ########################
-aura --noconfirm -S "noto-fonts" "noto-fonts-emoji"
-aura --noconfirm -A "nerd-fonts-fira-code"
+sudo aura --noconfirm -S "noto-fonts" "noto-fonts-emoji"
+sudo aura --noconfirm -A "nerd-fonts-fira-code"
 ######### end ##########
 
 ######################################
 ### Installing additional Programs ###
 ######################################
-aura --noconfirm -S "signal-desktop" "github-cli" pavucontrol zathura mpv vlc zathura-pdf-poppler steam
-aura --noconfirm -A "albert-bin" "brave-bin" "popcorntime-bin"
+sudo aura --noconfirm -S "signal-desktop" "github-cli" pavucontrol zathura mpv vlc zathura-pdf-poppler steam
+sudo aura --noconfirm -A "albert-bin" "brave-bin" "popcorntime-bin"
 yarn global add webtorrent-cli
 # nextcloud
 if [[ ! -d ".local/bin" ]]; then
@@ -137,7 +137,7 @@ cd ~ || exit 1
 #################
 ### PhotoGIMP ###
 #################
-aura -S "gimp"
+sudo aura -S "gimp"
 curl https://codeload.github.com/Diolinux/PhotoGIMP/tar.gz/refs/tags/1.0 --output PhotoGIMP.tar.gz
 tar -xf ./PhotoGIMP.tar.gz
 rm ./PhotoGIMP.tar.gz
@@ -162,7 +162,7 @@ fi
 ### Text Editor Setup ###
 #########################
 # neovim
-aura --noconfirm -S neovim
+sudo aura --noconfirm -S neovim
 # lvim
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 # formatters
@@ -172,7 +172,7 @@ pip install git+https://github.com/psf/black
 cargo install stylua
 # linters
 pip install flake8 codespell
-aura --noconfirm -S shellcheck
+sudo aura --noconfirm -S shellcheck
 go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.43.0@latest
 # julia language server
 mkdir -p ~/.julia/environments
@@ -207,14 +207,15 @@ sed -i '$d' .bashrc
 ################ end ################
 
 ##################################
-### create aura recovery point ###
+### create sudo aura recovery point ###
 ##################################
-aura -B
+sudo aura -B
 ############# end ################
 
 ####################
 ### final reboot ###
 ####################
+rm ~/arch_linux_setup.sh
 ehco ""
 ehco ""
 ehco ""
