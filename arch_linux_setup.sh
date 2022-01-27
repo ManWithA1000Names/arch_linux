@@ -54,9 +54,9 @@ rustup default stable
 ### Install Awesome and all the Floppy dependencies ###
 #######################################################
 # core dependencies
-sudo aura --noconfirm -A awesome-git picom-git #FIX: for some reason rofi-git fails to rosolve all dependencies
+sudo aura --noconfirm -A awesome-git picom-git
 # additional dependencies
-sudo aura --noconfirm -S inter-font pulseaudio alsa-utils pulseaudio-alsa feh maim xclip imagemagick blueman ffmpeg iproute2 iw thunar papirus-icon-theme
+sudo aura --noconfirm -S inter-font pulseaudio alsa-utils pulseaudio-alsa feh maim xclip imagemagick blueman ffmpeg iproute2 iw thunar papirus-icon-theme lxappearance
 # minor desktop changes
 # gnome theme
 tar -xf ./Kripton.tar.xz
@@ -69,19 +69,6 @@ echo "[Icon Theme]" | sudo tee /usr/share/icons/default/index.theme
 echo "Inherits=volantes_light_cursors" | sudo tee -a /usr/share/icons/default/index.theme
 rm -rf ./volantes_light_cursors.tar.gz
 rm -rf ./volantes_light_cursors
-# gtk theme
-mkdir -p /etc/gtk-2.0/ /etc/gtk-3.0/
-{
-	echo "[Settings]"
-	echo 'gtk-theme-name="Kripton"'
-	echo 'gtk-icon-theme-name="Papirus"'
-	echo 'gtk-font-name="FiraCode Nerd Font"'
-} | sudo tee "/etc/gtk-3.0/settings.ini"
-{
-	echo 'gtk-icon-theme-name="Papirus"'
-	echo 'gtk-theme-name="Kripton"'
-	echo 'gtk-font-name="FiraCode Nerd Font"'
-} | sudo tee "/etc/gtk-2.0/gtkrc"
 #######################################################
 
 ############################
@@ -114,7 +101,7 @@ sudo aura --noconfirm -A "nerd-fonts-fira-code"
 ### Installing additional Programs ###
 ######################################
 sudo aura --noconfirm -S "signal-desktop" "github-cli" pavucontrol zathura mpv vlc zathura-pdf-poppler steam
-sudo aura --noconfirm -A "albert-bin" "popcorntime-bin" #FIX: brave-bin failed to install
+sudo aura --noconfirm -A "albert-bin" "popcorntime-bin"
 yarn global add webtorrent-cli
 # nextcloud
 if [[ ! -d ".local/bin" ]]; then
@@ -160,7 +147,7 @@ bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/
 # formatters
 yarn global add prettier
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
-pip install git+https://github.com/psf/black #FIX: pip is not found
+pip install git+https://github.com/psf/black
 cargo install stylua
 # linters
 pip install flake8 codespell

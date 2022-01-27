@@ -7,4 +7,5 @@ cd dear-configs || exit 0
 ./deploy.fish
 cd ~ || exit
 sudo rm -rf ./arch_linux_final.sh
+lxappearance
 awesome-client "awesome.restart"
