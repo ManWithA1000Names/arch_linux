@@ -65,9 +65,9 @@ sudo mv ./Kripton /usr/share/themes/
 rm -rf ./Kripton.tar.xz
 # cursor
 curl --output volantes_light_cursors.tar.gz https://dl1.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTU4MTIzMTM3MywidSI6bnVsbCwibHQiOiJkb3dubG9hZCIsInMiOiI4MTcxNzNkMjhmODBlYmU3YzNhZmEzZDEzM2JmZDljYjA1ODdkY2JhMjMxMmUyYTMyNTVhYzYyNzAyM2E3YzQ4YjE2ZjdlNTMxYmRhNGJkMzMxZjEyNWQzNDI3ODc5Mzg4NmZhODI3MTE2NTEyZTU4YTk3NTkxNjVjZjE2NzFlYiIsInQiOjE2NDMyMTM5MzIsInN0ZnAiOiJkYzMwOTA2ZmUwYTBiYTljNzYwODY3MjUwNTZlZTA0YSIsInN0aXAiOiIxMDkuMjQyLjIyNy4zMyJ9.0EagILZtheUNI0Q04V3g88TVuEExcJHcFfX1ChoiIow/volantes_light_cursors.tar.gz
-sudo tar -zxvf volantes_light_cursors.tar.gz -C "/usr/share/icons/"
-echo "[Icon Theme]" | tee /usr/share/icons/default/index.theme
-echo "Inherits=volantes_light_cursors" | tee -a /usr/share/icons/default/index.theme
+sudo 'tar -zxvf volantes_light_cursors.tar.gz -C "/usr/share/icons/"'
+echo "[Icon Theme]" | sudo tee /usr/share/icons/default/index.theme
+echo "Inherits=volantes_light_cursors" | sudo tee -a /usr/share/icons/default/index.theme
 rm -rf ./volantes_light_cursors.tar.gz
 # gtk theme
 mkdir .config/gtk-2.0 .config/gtk-3.0 .config/gtk-4.0
@@ -137,7 +137,7 @@ cd ~ || exit 1
 #################
 ### PhotoGIMP ###
 #################
-sudo aura -S "gimp"
+sudo aura --noconfirm -S "gimp"
 curl https://codeload.github.com/Diolinux/PhotoGIMP/tar.gz/refs/tags/1.0 --output PhotoGIMP.tar.gz
 tar -xf ./PhotoGIMP.tar.gz
 rm ./PhotoGIMP.tar.gz
@@ -168,7 +168,7 @@ bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/
 # formatters
 yarn global add prettier
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
-pip install git+https://github.com/psf/black
+pip install git+https://github.com/psf/black #FIX: pip is not found
 cargo install stylua
 # linters
 pip install flake8 codespell
@@ -189,7 +189,7 @@ touch ~/.config/lvim/ftplugin/julia.lua
 #################
 ### XDG_STUFF ###
 #################
-xdg-mime default org.pwmt.zathura-pdf-poppler.desktop
+xdg-mime default org.pwmt.zathura-pdf-poppler.desktop application/pdf
 ###### end ######
 
 #####################
@@ -199,11 +199,15 @@ fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/
 fish -c "fisher install jorgebucaran/nvm.fish jethrokuan/z"
 ######## end ########
 
-#####################################
-### removed auto-exec from bashrc ###
-#####################################
+#########################
+### edit config files ###
+#########################
 sed -i '$d' .bashrc
-################ end ################
+echo "PATH=$HOME/.local/bin:\$PATH" >>.bashrc
+echo "PATH=$HOME/.yarn/bin:\$PATH" >>.bashrc
+fish -c "set -U fish_user_paths $HOME/.local/bin \$fish_user_paths"
+fish -c "set -U fish_user_paths $HOME/.yarn/bin \$fish_user_paths"
+######### end ###########
 
 ##################################
 ### create sudo aura recovery point ###
