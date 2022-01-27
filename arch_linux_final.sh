@@ -8,6 +8,7 @@ cd dear-configs || exit 0
 ./deploy.fish
 cd ~ || exit
 sudo rm -rf ./arch_linux_final.sh
+timedatectl set-timezone "Europe/Athens"
 fisher install ilancosman/tide
 lxappearance
 awesome-client "awesome.restart()"
