@@ -45,7 +45,7 @@ sudo aura --noconfirm -S "xf86-video-fbdev"
 #####################################
 ### Install Programming Languages ###
 #####################################
-sudo aura --noconfirm -S go lua rustup yarn julia
+sudo aura --noconfirm -S go lua rustup yarn julia python-pip
 yarn global add typescript
 rustup default stable
 ############### end #################
@@ -56,7 +56,7 @@ rustup default stable
 # core dependencies
 sudo aura --noconfirm -A awesome-git picom-git #FIX: for some reason rofi-git fails to rosolve all dependencies
 # additional dependencies
-sudo aura --noconfirm -S inter-font pulseaudio alsa-utils pulseaudio-alsa feh maim xclip imagemagic blueman ffmpeg iproute2 iw thunar papirus-icon-theme
+sudo aura --noconfirm -S inter-font pulseaudio alsa-utils pulseaudio-alsa feh maim xclip imagemagick blueman ffmpeg iproute2 iw thunar papirus-icon-theme
 # minor desktop changes
 # gnome theme
 tar -xf ./Kripton.tar.xz
@@ -166,10 +166,10 @@ bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/
 # formatters
 yarn global add prettier
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
-pip3 install git+https://github.com/psf/black #FIX: pip is not found
+pip install git+https://github.com/psf/black #FIX: pip is not found
 cargo install stylua
 # linters
-pip3 install flake8 codespell
+pip install flake8 codespell
 sudo aura --noconfirm -S shellcheck
 go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.43.0@latest
 # julia language server
@@ -206,16 +206,6 @@ echo "PATH=$HOME/.yarn/bin:\$PATH" >>.bashrc
 fish -c "set -U fish_user_paths $HOME/.local/bin \$fish_user_paths"
 fish -c "set -U fish_user_paths $HOME/.yarn/bin \$fish_user_paths"
 ######### end ###########
-
-###############
-### Configs ###
-###############
-git clone https://github.com/ManWithA1000Names/dear-configs.git
-if cd dear-configs; then
-	./deploy.fish
-fi
-cd ~ || exit 1
-##### end #####
 
 ##################################
 ### create sudo aura recovery point ###
