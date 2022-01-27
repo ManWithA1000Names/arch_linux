@@ -100,7 +100,7 @@ sudo aura --noconfirm -A "nerd-fonts-fira-code"
 ######################################
 ### Installing additional Programs ###
 ######################################
-sudo aura --noconfirm -S "signal-desktop" "github-cli" pavucontrol zathura mpv vlc zathura-pdf-poppler steam
+sudo aura --noconfirm -S "signal-desktop" "github-cli" pavucontrol zathura mpv vlc zathura-pdf-poppler steam fuse2
 sudo aura --noconfirm -A "albert-bin" "popcorntime-bin"
 yarn global add webtorrent-cli
 # nextcloud
@@ -116,7 +116,7 @@ cd ~ || exit 1
 
 #################
 ### PhotoGIMP ###
-#################
+################# FIX: broken
 sudo aura --noconfirm -S "gimp"
 curl https://codeload.github.com/Diolinux/PhotoGIMP/tar.gz/refs/tags/1.0 --output PhotoGIMP.tar.gz
 tar -xf ./PhotoGIMP.tar.gz
