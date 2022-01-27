@@ -13,19 +13,5 @@ mv ~/arch_linux/arch_linux_setup.sh "$new_home"
 mv ~/arch_linux/arch_linux_final.sh "$new_home"
 mv ~/arch_linux/Kripton.tar.xz "$new_home"
 mv ~/arch_linux/volantes_light_cursors.tar.gz "$new_home"
-echo "/home/$new_user/arch_linux_setup.sh" >"$new_home/.bashrc"
-####### end ########
-
-###############################
-# reboot needs to happen here #
-###############################
-echo ""
-echo ""
-echo ""
-echo -n "Shutdown to remove installation media and start setup script? [Y/n]: "
-read -r reboot_now
-if [[ "$reboot_now" == "n" || "$reboot_now" == "N" || "$reboot_now" == "no" || "$reboot_now" == "NO" || "$reboot_now" == "No" || "$reboot_now" == "nO" ]]; then
-	exit 0
-else
-	poweroff
-fi
+arch-chroot /mnt
+su "$new_user" -c "/home/$new_user/arch_linux_setup.sh"
