@@ -56,7 +56,7 @@ rustup default stable
 # core dependencies
 sudo aura --noconfirm -A awesome-git picom-git
 # additional dependencies
-sudo aura --noconfirm -S inter-font pulseaudio alsa-utils pulseaudio-alsa feh maim xclip imagemagick blueman ffmpeg iproute2 iw thunar papirus-icon-theme lxappearance
+sudo aura --noconfirm -S inter-font pulseaudio alsa-utils pulseaudio-alsa feh maim xclip imagemagick blueman ffmpeg iproute2 iw thunar papirus-icon-theme lxappearance gpick
 # minor desktop changes
 # gnome theme
 tar -xf ./Kripton.tar.xz
