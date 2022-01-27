@@ -59,12 +59,10 @@ sudo aura --noconfirm -A awesome-git picom-git #FIX: for some reason rofi-git fa
 sudo aura --noconfirm -S inter-font pulseaudio alsa-utils pulseaudio-alsa feh maim xclip imagemagic blueman ffmpeg iproute2 iw thunar papirus-icon-theme
 # minor desktop changes
 # gnome theme
-curl --output Kripton.tar.xz https://dl2.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTY0MjM3Mjc4NSwidSI6bnVsbCwibHQiOiJkb3dubG9hZCIsInMiOiI3ZmU5NzhlNDc2YTBjYTZhZGE2N2E0NDI2ZGIyNDBmYjI5MTU0YjMxMzYzOGRhZTY2OGFhYWY0YjcxMDVkODZkYjZlYjgzY2YxODkxZDYwYmYyOTNjYWUyMzE5YjQzMGQyMGJmZGQ4ZTQxMzQyNGRlNmM1MGI2ZTBkNDkzYmYxNiIsInQiOjE2NDMyMDk5OTksInN0ZnAiOiJkYzMwOTA2ZmUwYTBiYTljNzYwODY3MjUwNTZlZTA0YSIsInN0aXAiOiIxMDkuMjQyLjIyNy4zMyJ9.biAd6dRZKl0aPzT7_syU_2mwviXz1UZYWivDxxud_oQ/Kripton.tar.xz
 tar -xf ./Kripton.tar.xz
 sudo mv ./Kripton /usr/share/themes/
 rm -rf ./Kripton.tar.xz
 # cursor
-curl --output volantes_light_cursors.tar.gz https://dl1.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTU4MTIzMTM3MywidSI6bnVsbCwibHQiOiJkb3dubG9hZCIsInMiOiI4MTcxNzNkMjhmODBlYmU3YzNhZmEzZDEzM2JmZDljYjA1ODdkY2JhMjMxMmUyYTMyNTVhYzYyNzAyM2E3YzQ4YjE2ZjdlNTMxYmRhNGJkMzMxZjEyNWQzNDI3ODc5Mzg4NmZhODI3MTE2NTEyZTU4YTk3NTkxNjVjZjE2NzFlYiIsInQiOjE2NDMyMTM5MzIsInN0ZnAiOiJkYzMwOTA2ZmUwYTBiYTljNzYwODY3MjUwNTZlZTA0YSIsInN0aXAiOiIxMDkuMjQyLjIyNy4zMyJ9.0EagILZtheUNI0Q04V3g88TVuEExcJHcFfX1ChoiIow/volantes_light_cursors.tar.gz
 sudo 'tar -zxvf volantes_light_cursors.tar.gz -C "/usr/share/icons/"'
 echo "[Icon Theme]" | sudo tee /usr/share/icons/default/index.theme
 echo "Inherits=volantes_light_cursors" | sudo tee -a /usr/share/icons/default/index.theme
@@ -79,7 +77,7 @@ mkdir .config/gtk-2.0 .config/gtk-3.0 .config/gtk-4.0
 	echo "gtk-cursor-theme-name=volantes_light_cursors"
 	echo "gtk-cursor-theme-size=0"
 	echo "gtk-toolbar-style=GTK_TOOLBAR_BOTH"
-	echo "gtk-GTK_ICON_SIZE_LARGE_TOOLBAR"
+	echo "gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR"
 	echo "gtk-button-images=1"
 	echo "gtk-menu-images=1"
 	echo "gtk-enable-event-sounds=1"
@@ -209,6 +207,16 @@ fish -c "set -U fish_user_paths $HOME/.local/bin \$fish_user_paths"
 fish -c "set -U fish_user_paths $HOME/.yarn/bin \$fish_user_paths"
 ######### end ###########
 
+###############
+### Configs ###
+###############
+git clone https://github.com/ManWithA1000Names/dear-configs.git
+if cd dear-configs; then
+	./deploy.fish
+fi
+cd ~ || exit 1
+##### end #####
+
 ##################################
 ### create sudo aura recovery point ###
 ##################################
@@ -218,10 +226,10 @@ sudo aura -B
 ####################
 ### final reboot ###
 ####################
-rm ~/arch_linux_setup.sh
-ehco ""
-ehco ""
-ehco ""
+sudo rm ~/arch_linux_setup.sh
+echo ""
+echo ""
+echo ""
 echo -n "Reboot now to finalize system? [Y/n]"
 read -r reboot_now
 if [[ "$reboot_now" == "n" || "$reboot_now" == "N" || "$reboot_now" == "no" || "$reboot_now" == "NO" || "$reboot_now" == "No" || "$reboot_now" == "nO" ]]; then

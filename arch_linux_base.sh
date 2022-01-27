@@ -10,6 +10,8 @@ cd ..
 new_user="$(ls /mnt/home)"
 new_home="/mnt/home/$new_user"
 cp ~/arch_linux/arch_linux_setup.sh "$new_home"
+mv ~/arch_linux/Kripton.tar.xz "$new_home"
+mv ~/arch_linux/volantes_light_cursors.tar.gz "$new_home"
 echo "/home/$new_user/arch_linux_setup.sh" >"$new_home/.bashrc"
 ####### end ########
 
