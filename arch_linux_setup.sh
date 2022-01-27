@@ -168,10 +168,10 @@ bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/
 # formatters
 yarn global add prettier
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
-pip install git+https://github.com/psf/black #FIX: pip is not found
+pip3 install git+https://github.com/psf/black #FIX: pip is not found
 cargo install stylua
 # linters
-pip install flake8 codespell
+pip3 install flake8 codespell
 sudo aura --noconfirm -S shellcheck
 go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.43.0@latest
 # julia language server
