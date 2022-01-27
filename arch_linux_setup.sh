@@ -108,14 +108,15 @@ if [[ ! -d ".local/bin" ]]; then
 	mkdir -p .local/bin
 fi
 cd .local/bin || exit 1
-curl 'https://objects.githubusercontent.com/github-production-release-asset-2e65be/105010691/8cc26b57-ba5c-437e-9b24-731f365a2065?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20220126%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220126T164621Z&X-Amz-Expires=300&X-Amz-Signature=b932142054a5ee23825072b997d0d036e2f99e9d1fb673812cde56c6f51342b3&X-Amz-SignedHeaders=host&actor_id=70207966&key_id=0&repo_id=105010691&response-content-disposition=attachment%3B%20filename%3DNextcloud-3.4.1-x86_64.AppImage&response-content-type=application%2Foctet-stream' --output nextcloud
+link=$(curl https://download.nextcloud.com/desktop/daily/Linux | grep -Eo 'Nextcloud-[^"<]+' | tail -n 1)
+curl "https://download.nextcloud.com/desktop/daily/Linux/$link" --output nextcloud
 chmod +x ./nextcloud
 cd ~ || exit 1
 ############### end ##################
 
 #################
 ### PhotoGIMP ###
-################# FIX: this is plain broken :)
+#################
 sudo aura --noconfirm -S "gimp"
 curl https://codeload.github.com/Diolinux/PhotoGIMP/tar.gz/refs/tags/1.0 --output PhotoGIMP.tar.gz
 tar -xf ./PhotoGIMP.tar.gz
@@ -129,7 +130,8 @@ if cd PhotoGIMP-1.0; then
 	sed -i 's/GenericName=.*/GenericName=Image Editor/' ~/.local/share/applications/org.gimp.GIMP.desktop
 	sed -i 's/Exec=.*/Exec=gimp/' ~/.local/share/applications/org.gimp.GIMP.desktop
 	rm -rf ~/.config/GIMP/*
-	cp -R .var/app/org.gimp.GIMP/config/GIMP/2.10 ../.config/GIMP
+	rm -rf ~/.config/GIMP/*
+	cp -R .var/app/org.gimp.GIMP/config/GIMP/2.10/* ../.config/GIMP/
 	cd ..
 	rm -rf PhotoGIMP-1.0
 else
