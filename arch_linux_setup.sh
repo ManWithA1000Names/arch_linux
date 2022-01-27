@@ -108,7 +108,7 @@ if [[ ! -d ".local/bin" ]]; then
 	mkdir -p .local/bin
 fi
 cd .local/bin || exit 1
-link=$(curl https://download.nextcloud.com/desktop/daily/Linux | grep -Eo 'Nextcloud-[^"<]+' | tail -n 1)
+link=$(curl https://download.nextcloud.com/desktop/daily/Linux/ | grep -Eo 'Nextcloud-[^"<]+' | tail -n 1)
 curl "https://download.nextcloud.com/desktop/daily/Linux/$link" --output nextcloud
 chmod +x ./nextcloud
 cd ~ || exit 1
@@ -131,7 +131,7 @@ if cd PhotoGIMP-1.0; then
 	sed -i 's/Exec=.*/Exec=gimp/' ~/.local/share/applications/org.gimp.GIMP.desktop
 	rm -rf ~/.config/GIMP/*
 	rm -rf ~/.config/GIMP/*
-	cp -R .var/app/org.gimp.GIMP/config/GIMP/2.10/* ../.config/GIMP/
+	mv -R .var/app/org.gimp.GIMP/config/GIMP/2.10/* ../.config/GIMP/
 	cd ..
 	rm -rf PhotoGIMP-1.0
 else
