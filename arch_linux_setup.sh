@@ -122,7 +122,7 @@ sudo aura --noconfirm -A "nerd-fonts-fira-code"
 ### Installing additional Programs ###
 ######################################
 sudo aura --noconfirm -S "signal-desktop" "github-cli" pavucontrol zathura mpv vlc zathura-pdf-poppler steam
-sudo aura --noconfirm -A "albert-bin" "brave-bin" "popcorntime-bin" #FIX: brave-bin failed to install
+sudo aura --noconfirm -A "albert-bin" "popcorntime-bin" #FIX: brave-bin failed to install
 yarn global add webtorrent-cli
 # nextcloud
 if [[ ! -d ".local/bin" ]]; then
