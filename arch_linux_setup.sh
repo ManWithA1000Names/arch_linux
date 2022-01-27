@@ -63,16 +63,18 @@ tar -xf ./Kripton.tar.xz
 sudo mv ./Kripton /usr/share/themes/
 rm -rf ./Kripton.tar.xz
 # cursor
-sudo 'tar -zxvf volantes_light_cursors.tar.gz -C "/usr/share/icons/"'
+tar -zxvf volantes_light_cursors.tar.gz
+sudo mv volantes_light_cursors /usr/share/icons
 echo "[Icon Theme]" | sudo tee /usr/share/icons/default/index.theme
 echo "Inherits=volantes_light_cursors" | sudo tee -a /usr/share/icons/default/index.theme
 rm -rf ./volantes_light_cursors.tar.gz
+rm -rf ./volantes_light_cursors
 # gtk theme
-mkdir .config/gtk-2.0 .config/gtk-3.0 .config/gtk-4.0
+mkdir -p .config/gtk-2.0 .config/gtk-3.0 .config/gtk-4.0
 {
 	echo "[Settings]"
 	echo "gtk-theme-name=Kripton"
-	echo "gtk-icon-them-name=Papirus"
+	echo "gtk-icon-theme-name=Papirus"
 	echo "gtk-font-name=Cantarell 11"
 	echo "gtk-cursor-theme-name=volantes_light_cursors"
 	echo "gtk-cursor-theme-size=0"
