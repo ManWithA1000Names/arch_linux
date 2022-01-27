@@ -9,7 +9,8 @@ cd archtitus || exit 1
 cd ..
 new_user="$(ls /mnt/home)"
 new_home="/mnt/home/$new_user"
-cp ~/arch_linux/arch_linux_setup.sh "$new_home"
+mv ~/arch_linux/arch_linux_setup.sh "$new_home"
+mv ~/arch_linux/arch_linux_final.sh "$new_home"
 mv ~/arch_linux/Kripton.tar.xz "$new_home"
 mv ~/arch_linux/volantes_light_cursors.tar.gz "$new_home"
 echo "/home/$new_user/arch_linux_setup.sh" >"$new_home/.bashrc"
@@ -26,6 +27,5 @@ read -r reboot_now
 if [[ "$reboot_now" == "n" || "$reboot_now" == "N" || "$reboot_now" == "no" || "$reboot_now" == "NO" || "$reboot_now" == "No" || "$reboot_now" == "nO" ]]; then
 	exit 0
 else
-	echo "Shutting down to start setup script :)"
 	poweroff
 fi

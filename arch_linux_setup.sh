@@ -70,26 +70,18 @@ echo "Inherits=volantes_light_cursors" | sudo tee -a /usr/share/icons/default/in
 rm -rf ./volantes_light_cursors.tar.gz
 rm -rf ./volantes_light_cursors
 # gtk theme
-mkdir -p .config/gtk-2.0 .config/gtk-3.0 .config/gtk-4.0
+mkdir -p /etc/gtk-2.0/ /etc/gtk-3.0/
 {
 	echo "[Settings]"
-	echo "gtk-theme-name=Kripton"
-	echo "gtk-icon-theme-name=Papirus"
-	echo "gtk-font-name=Cantarell 11"
-	echo "gtk-cursor-theme-name=volantes_light_cursors"
-	echo "gtk-cursor-theme-size=0"
-	echo "gtk-toolbar-style=GTK_TOOLBAR_BOTH"
-	echo "gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR"
-	echo "gtk-button-images=1"
-	echo "gtk-menu-images=1"
-	echo "gtk-enable-event-sounds=1"
-	echo "gtk-enable-input-feedback-sounds=1"
-	echo "gtk-xft-antialias=1"
-	echo "gtk-xft-hinting=1"
-	echo "gtk-xft-hintstyle=hintfull"
-} >".config/gtk-2.0/settings.ini"
-cp .config/gtk-2.0/setting.ini .config/gtk-3.0/settings.ini
-cp .config/gtk-2.0/setting.ini .config/gtk-4.0/settings.ini
+	echo 'gtk-theme-name="Kripton"'
+	echo 'gtk-icon-theme-name="Papirus"'
+	echo 'gtk-font-name="FiraCode Nerd Font"'
+} | sudo tee "/etc/gtk-3.0/settings.ini"
+{
+	echo 'gtk-icon-theme-name="Papirus"'
+	echo 'gtk-theme-name="Kripton"'
+	echo 'gtk-font-name="FiraCode Nerd Font"'
+} | sudo tee "/etc/gtk-2.0/gtkrc"
 #######################################################
 
 ############################
@@ -227,6 +219,9 @@ read -r reboot_now
 if [[ "$reboot_now" == "n" || "$reboot_now" == "N" || "$reboot_now" == "no" || "$reboot_now" == "NO" || "$reboot_now" == "No" || "$reboot_now" == "nO" ]]; then
 	exit 0
 else
+	echo "Restarting in 5 seconds"
+	echo "Remember to run the arch_linux_final.sh when you log in :)"
+	sleep 5
 	reboot
 fi
 ###### end #########
