@@ -16,7 +16,7 @@ rm -rf aura-bin
 ####################
 sudo aura --noconfirm -Sy fish
 chsh -s /usr/bin/fish
-fish -C "set -U fish_greeting"
+fish -c "set -U fish_greeting"
 ####### end ########
 
 ################################
@@ -27,11 +27,11 @@ sudo aura --noconfirm -A lightdm-webkit-theme-aether
 echo "Xcursor.size: 27" >>.Xresources
 echo "Xft.dpi: 108" >>.Xresources
 #echo "xrandr --output HDMI-0 --off --output HDMI-1 --off --output HDMI-2 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3440x1440 --pos 721x0 --rotate normal --output DP-3 --off --output DP-4 --mode 5120x1440 --pos 0x1440 --rotate normal --output DP-5 --off" |  tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
-echo "xrandr -s 1920x1080" | tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
-chmod +x /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
-sed -i 's/#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
-sed -i 's/#user-session=.*/user-session=awesome/' /etc/lightdm/lightdm.conf
-systemctl enable lightdm
+echo "xrandr -s 1920x1080" | sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
+sudo chmod +x /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
+sudo sed -i 's/#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
+sudo sed -i 's/#user-session=.*/user-session=awesome/' /etc/lightdm/lightdm.conf
+sudo systemctl enable lightdm
 ############## end #############
 
 #######################
@@ -54,18 +54,18 @@ rustup default stable
 ### Install Awesome and all the Floppy dependencies ###
 #######################################################
 # core dependencies
-sudo aura --noconfirm -A awesome-git rofi-git picom-git
+sudo aura --noconfirm -A awesome-git picom-git #FIX: for some reason rofi-git fails to rosolve all dependencies
 # additional dependencies
 sudo aura --noconfirm -S inter-font pulseaudio alsa-utils pulseaudio-alsa feh maim xclip imagemagic blueman ffmpeg iproute2 iw thunar papirus-icon-theme
 # minor desktop changes
 # gnome theme
 curl --output Kripton.tar.xz https://dl2.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTY0MjM3Mjc4NSwidSI6bnVsbCwibHQiOiJkb3dubG9hZCIsInMiOiI3ZmU5NzhlNDc2YTBjYTZhZGE2N2E0NDI2ZGIyNDBmYjI5MTU0YjMxMzYzOGRhZTY2OGFhYWY0YjcxMDVkODZkYjZlYjgzY2YxODkxZDYwYmYyOTNjYWUyMzE5YjQzMGQyMGJmZGQ4ZTQxMzQyNGRlNmM1MGI2ZTBkNDkzYmYxNiIsInQiOjE2NDMyMDk5OTksInN0ZnAiOiJkYzMwOTA2ZmUwYTBiYTljNzYwODY3MjUwNTZlZTA0YSIsInN0aXAiOiIxMDkuMjQyLjIyNy4zMyJ9.biAd6dRZKl0aPzT7_syU_2mwviXz1UZYWivDxxud_oQ/Kripton.tar.xz
 tar -xf ./Kripton.tar.xz
-mv ./Kripton /usr/share/themes/
+sudo mv ./Kripton /usr/share/themes/
 rm -rf ./Kripton.tar.xz
 # cursor
 curl --output volantes_light_cursors.tar.gz https://dl1.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTU4MTIzMTM3MywidSI6bnVsbCwibHQiOiJkb3dubG9hZCIsInMiOiI4MTcxNzNkMjhmODBlYmU3YzNhZmEzZDEzM2JmZDljYjA1ODdkY2JhMjMxMmUyYTMyNTVhYzYyNzAyM2E3YzQ4YjE2ZjdlNTMxYmRhNGJkMzMxZjEyNWQzNDI3ODc5Mzg4NmZhODI3MTE2NTEyZTU4YTk3NTkxNjVjZjE2NzFlYiIsInQiOjE2NDMyMTM5MzIsInN0ZnAiOiJkYzMwOTA2ZmUwYTBiYTljNzYwODY3MjUwNTZlZTA0YSIsInN0aXAiOiIxMDkuMjQyLjIyNy4zMyJ9.0EagILZtheUNI0Q04V3g88TVuEExcJHcFfX1ChoiIow/volantes_light_cursors.tar.gz
-tar -zxvf volantes_light_cursors.tar.gz -C "/usr/share/icons/"
+sudo tar -zxvf volantes_light_cursors.tar.gz -C "/usr/share/icons/"
 echo "[Icon Theme]" | tee /usr/share/icons/default/index.theme
 echo "Inherits=volantes_light_cursors" | tee -a /usr/share/icons/default/index.theme
 rm -rf ./volantes_light_cursors.tar.gz
@@ -122,7 +122,7 @@ sudo aura --noconfirm -A "nerd-fonts-fira-code"
 ### Installing additional Programs ###
 ######################################
 sudo aura --noconfirm -S "signal-desktop" "github-cli" pavucontrol zathura mpv vlc zathura-pdf-poppler steam
-sudo aura --noconfirm -A "albert-bin" "brave-bin" "popcorntime-bin"
+sudo aura --noconfirm -A "albert-bin" "brave-bin" "popcorntime-bin" #FIX: brave-bin failed to install
 yarn global add webtorrent-cli
 # nextcloud
 if [[ ! -d ".local/bin" ]]; then
@@ -195,9 +195,8 @@ xdg-mime default org.pwmt.zathura-pdf-poppler.desktop
 #####################
 ### Fish programs ###
 #####################
-fish -C "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
-fish -C "fisher install jorgebucaran/nvm.fish"
-fish -C "fisher install jethrokuan/z"
+fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
+fish -c "fisher install jorgebucaran/nvm.fish jethrokuan/z"
 ######## end ########
 
 #####################################
