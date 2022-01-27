@@ -115,7 +115,7 @@ cd ~ || exit 1
 
 #################
 ### PhotoGIMP ###
-#################
+################# FIX: this is plain broken :)
 sudo aura --noconfirm -S "gimp"
 curl https://codeload.github.com/Diolinux/PhotoGIMP/tar.gz/refs/tags/1.0 --output PhotoGIMP.tar.gz
 tar -xf ./PhotoGIMP.tar.gz
