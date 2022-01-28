@@ -11,7 +11,7 @@ sleep 2
 kill $gimp_pid
 if cd PhotoGIMP-1.0; then
 	cp .icons/* ../.icons/
-	sudo sed -i 's/Icon=.*/Icon=photogimp.png/' ~/usr/share/applications/gimp.desktop
+	sudo sed -i 's/Icon=.*/Icon=photogimp.png/' /usr/share/applications/gimp.desktop
 	rm -rf ~/.config/GIMP/*
 	mv .var/app/org.gimp.GIMP/config/GIMP/2.10/ ../.config/GIMP/
 	cd ..
