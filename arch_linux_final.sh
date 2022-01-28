@@ -1,7 +1,7 @@
 #!/bin/bash
 cd ~ || exit 1
-sudo aura -A "brave-bin"
-sudo aura -A "rofi-git"
+sudo aura --noconfirm -A "brave-bin"
+sudo aura --noconfirm -A "rofi-git"
 gh auth login
 gh repo clone dear-configs
 cd dear-configs || exit 0

@@ -118,25 +118,25 @@ cd ~ || exit 1
 ### PhotoGIMP ###
 ################# FIX: broken
 sudo aura --noconfirm -S "gimp"
-curl https://codeload.github.com/Diolinux/PhotoGIMP/tar.gz/refs/tags/1.0 --output PhotoGIMP.tar.gz
-tar -xf ./PhotoGIMP.tar.gz
-rm ./PhotoGIMP.tar.gz
-mkdir ./.icons
-mkdir -p .local/share/applications/
-if cd PhotoGIMP-1.0; then
-	cp .icons/* ../.icons/
-	cp .local/share/applications/* ../.local/share/applications
-	sed -i 's/Comment=.*/Comment=GNU Image Manipulation Program' ~/.local/share/applications/org.gimp.GIMP.desktop
-	sed -i 's/GenericName=.*/GenericName=Image Editor/' ~/.local/share/applications/org.gimp.GIMP.desktop
-	sed -i 's/Exec=.*/Exec=gimp/' ~/.local/share/applications/org.gimp.GIMP.desktop
-	rm -rf ~/.config/GIMP/*
-	rm -rf ~/.config/GIMP/*
-	mv .var/app/org.gimp.GIMP/config/GIMP/2.10/* ../.config/GIMP/
-	cd ..
-	rm -rf PhotoGIMP-1.0
-else
-	rm -rf PhotoGIMP-1.0
-fi
+# curl https://codeload.github.com/Diolinux/PhotoGIMP/tar.gz/refs/tags/1.0 --output PhotoGIMP.tar.gz
+# tar -xf ./PhotoGIMP.tar.gz
+# rm ./PhotoGIMP.tar.gz
+# mkdir ./.icons
+# mkdir -p .local/share/applications/
+# if cd PhotoGIMP-1.0; then
+# 	cp .icons/* ../.icons/
+# 	cp .local/share/applications/* ../.local/share/applications
+# 	sed -i 's/Comment=.*/Comment=GNU Image Manipulation Program' ~/.local/share/applications/org.gimp.GIMP.desktop
+# 	sed -i 's/GenericName=.*/GenericName=Image Editor/' ~/.local/share/applications/org.gimp.GIMP.desktop
+# 	sed -i 's/Exec=.*/Exec=gimp/' ~/.local/share/applications/org.gimp.GIMP.desktop
+# 	rm -rf ~/.config/GIMP/*
+# 	rm -rf ~/.config/GIMP/*
+# 	mv .var/app/org.gimp.GIMP/config/GIMP/2.10/* ../.config/GIMP/
+# 	cd ..
+# 	rm -rf PhotoGIMP-1.0
+# else
+# 	rm -rf PhotoGIMP-1.0
+# fi
 #################
 
 #########################
