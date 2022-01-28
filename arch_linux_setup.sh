@@ -48,6 +48,7 @@ sudo aura --noconfirm -S "xf86-video-fbdev"
 sudo aura --noconfirm -S go lua rustup yarn julia python-pip
 yarn global add typescript
 rustup default stable
+go env -w "GOPRIVATE=github.com/ManWithA1000Names/*"
 ############### end #################
 
 #######################################################
