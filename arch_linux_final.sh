@@ -8,7 +8,6 @@ cd dear-configs || exit 0
 ./deploy.fish
 timedatectl set-timezone "Europe/Athens"
 fish -c "fisher install ilancosman/tide"
-nextcloud &
 albert &
 lxappearance
 wait
