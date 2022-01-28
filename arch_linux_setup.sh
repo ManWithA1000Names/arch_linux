@@ -6,7 +6,7 @@
 git clone https://aur.archlinux.org/aura-bin.git
 cd aura-bin || exit 1
 makepkg
-sudo pacman -U ./*.pkg.*
+sudo pacman --noconfirm -U ./*.pkg.*
 cd ~ || exit 1
 rm -rf aura-bin
 ######## end #######
