@@ -25,6 +25,7 @@ fish -c "fisher install ilancosman/tide"
 nextcloud &
 albert &
 lxappearance
+wait
 awesome-client "awesome.restart()"
 cd ~ && sudo rm -rf ./arch_linux_final.sh
 killall kitty

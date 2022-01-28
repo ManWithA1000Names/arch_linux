@@ -182,4 +182,4 @@ echo "Restarting in 5 seconds"
 echo "Remember to run the arch_linux_final.sh when you log in :)"
 sleep 5
 reboot
-###### end #########
+###### end ######### TODO: find out how to do bluetooth stuff bluez/bluez-utils/blueman are all installed but it still can't find bluetooth service
