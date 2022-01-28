@@ -190,11 +190,11 @@ fish -c "set -U fish_user_paths $HOME/.local/bin \$fish_user_paths"
 fish -c "set -U fish_user_paths $HOME/.yarn/bin \$fish_user_paths"
 ######### end ###########
 
-##################################
+#######################################
 ### create sudo aura recovery point ###
-##################################
+#######################################
 sudo aura -B
-############# end ################
+################ end ##################
 
 ####################
 ### final reboot ###
@@ -203,14 +203,8 @@ sudo rm ~/arch_linux_setup.sh
 echo ""
 echo ""
 echo ""
-echo -n "Reboot now to finalize system? [Y/n]"
-read -r reboot_now
-if [[ "$reboot_now" == "n" || "$reboot_now" == "N" || "$reboot_now" == "no" || "$reboot_now" == "NO" || "$reboot_now" == "No" || "$reboot_now" == "nO" ]]; then
-	exit 0
-else
-	echo "Restarting in 5 seconds"
-	echo "Remember to run the arch_linux_final.sh when you log in :)"
-	sleep 5
-	reboot
-fi
+echo "Restarting in 5 seconds"
+echo "Remember to run the arch_linux_final.sh when you log in :)"
+sleep 5
+reboot
 ###### end #########

@@ -19,13 +19,4 @@ echo "/home/$new_user/arch_linux_setup.sh" >"$new_home/.bashrc"
 ###############################
 # reboot needs to happen here #
 ###############################
-echo ""
-echo ""
-echo ""
-echo -n "Shutdown to remove installation media and start setup script? [Y/n]: "
-read -r reboot_now
-if [[ "$reboot_now" == "n" || "$reboot_now" == "N" || "$reboot_now" == "no" || "$reboot_now" == "NO" || "$reboot_now" == "No" || "$reboot_now" == "nO" ]]; then
-	exit 0
-else
-	poweroff
-fi
+poweroff
