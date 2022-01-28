@@ -108,11 +108,11 @@ yarn global add webtorrent-cli
 if [[ ! -d ".local/bin" ]]; then
 	mkdir -p .local/bin
 fi
-cd .local/bin || exit 1
-link=$(curl https://download.nextcloud.com/desktop/daily/Linux/ | grep -Eo 'Nextcloud-[^"<]+' | tail -n 1)
-curl "https://download.nextcloud.com/desktop/daily/Linux/$link" --output nextcloud
-chmod +x ./nextcloud
-cd ~ || exit 1
+# cd .local/bin || exit 1
+# link=$(curl https://download.nextcloud.com/desktop/daily/Linux/ | grep -Eo 'Nextcloud-[^"<]+' | tail -n 1)
+# curl "https://download.nextcloud.com/desktop/daily/Linux/$link" --output nextcloud
+# chmod +x ./nextcloud
+# cd ~ || exit 1
 ############### end ##################
 
 #########################
