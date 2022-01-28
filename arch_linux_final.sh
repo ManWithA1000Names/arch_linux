@@ -22,6 +22,8 @@ cd dear-configs || exit 0
 ./deploy.fish
 timedatectl set-timezone "Europe/Athens"
 fish -c "fisher install ilancosman/tide"
+nextcloud &
+albert &
 lxappearance
 awesome-client "awesome.restart()"
 cd ~ && sudo rm -rf ./arch_linux_final.sh
