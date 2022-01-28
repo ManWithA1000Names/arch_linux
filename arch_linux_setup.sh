@@ -26,7 +26,7 @@ sudo aura --noconfirm -S lightdm xorg lightdm-webkit2-greeter
 sudo aura --noconfirm -A lightdm-webkit-theme-aether
 echo "Xcursor.size: 27" >>.Xresources
 echo "Xft.dpi: 108" >>.Xresources
-#echo "xrandr --output HDMI-0 --off --output HDMI-1 --off --output HDMI-2 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3440x1440 --pos 721x0 --rotate normal --output DP-3 --off --output DP-4 --mode 5120x1440 --pos 0x1440 --rotate normal --output DP-5 --off" |  tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
+#echo "xrandr --output HDMI-0 --off --output HDMI-1 --off --output HDMI-2 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3440x1440 --pos 721x0 --rotate normal --output DP-3 --off --output DP-4 --mode 5120x1440 --pos 0x1440 --rotate normal --output DP-5 --off" |  sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
 echo "xrandr -s 1920x1080" | sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
 sudo chmod +x /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
 sudo sed -i 's/#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
@@ -56,7 +56,7 @@ rustup default stable
 # core dependencies
 sudo aura --noconfirm -A awesome-git picom-git
 # additional dependencies
-sudo aura --noconfirm -S inter-font pulseaudio alsa-utils pulseaudio-alsa feh maim xclip imagemagick blueman ffmpeg iproute2 iw thunar papirus-icon-theme lxappearance gpick
+sudo aura --noconfirm -S inter-font pulseaudio alsa-utils pulseaudio-alsa feh maim xclip imagemagick blueman ffmpeg iproute2 iw thunar papirus-icon-theme lxappearance gpick bluez bluez-utils rofi
 # minor desktop changes
 # gnome theme
 tar -xf ./Kripton.tar.xz
@@ -100,7 +100,7 @@ sudo aura --noconfirm -A "nerd-fonts-fira-code"
 ######################################
 ### Installing additional Programs ###
 ######################################
-sudo aura --noconfirm -S "signal-desktop" "github-cli" pavucontrol zathura mpv vlc zathura-pdf-poppler steam fuse2
+sudo aura --noconfirm -S "signal-desktop" "github-cli" pavucontrol zathura mpv vlc zathura-pdf-poppler steam fuse2 gimp
 sudo aura --noconfirm -A "albert-bin" "popcorntime-bin"
 yarn global add webtorrent-cli
 # nextcloud
@@ -113,31 +113,6 @@ curl "https://download.nextcloud.com/desktop/daily/Linux/$link" --output nextclo
 chmod +x ./nextcloud
 cd ~ || exit 1
 ############### end ##################
-
-#################
-### PhotoGIMP ###
-################# FIX: broken
-sudo aura --noconfirm -S "gimp"
-# curl https://codeload.github.com/Diolinux/PhotoGIMP/tar.gz/refs/tags/1.0 --output PhotoGIMP.tar.gz
-# tar -xf ./PhotoGIMP.tar.gz
-# rm ./PhotoGIMP.tar.gz
-# mkdir ./.icons
-# mkdir -p .local/share/applications/
-# if cd PhotoGIMP-1.0; then
-# 	cp .icons/* ../.icons/
-# 	cp .local/share/applications/* ../.local/share/applications
-# 	sed -i 's/Comment=.*/Comment=GNU Image Manipulation Program' ~/.local/share/applications/org.gimp.GIMP.desktop
-# 	sed -i 's/GenericName=.*/GenericName=Image Editor/' ~/.local/share/applications/org.gimp.GIMP.desktop
-# 	sed -i 's/Exec=.*/Exec=gimp/' ~/.local/share/applications/org.gimp.GIMP.desktop
-# 	rm -rf ~/.config/GIMP/*
-# 	rm -rf ~/.config/GIMP/*
-# 	mv .var/app/org.gimp.GIMP/config/GIMP/2.10/* ../.config/GIMP/
-# 	cd ..
-# 	rm -rf PhotoGIMP-1.0
-# else
-# 	rm -rf PhotoGIMP-1.0
-# fi
-#################
 
 #########################
 ### Text Editor Setup ###
