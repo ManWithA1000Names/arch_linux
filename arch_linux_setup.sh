@@ -160,10 +160,16 @@ fish -c "fisher install jorgebucaran/nvm.fish jethrokuan/z"
 ### edit config files ###
 #########################
 sed -i '$d' .bashrc
-echo "PATH=$HOME/.local/bin:\$PATH" >>.bashrc
-echo "PATH=$HOME/.yarn/bin:\$PATH" >>.bashrc
+{
+	echo "PATH=$HOME/.local/bin:\$PATH"
+	echo "PATH=$HOME/.yarn/bin:\$PATH"
+	echo "PATH=$HOME/.cargo/bin:\$PATH"
+	echo "PATH=$HOME/go/bin:\$PATH"
+} >>.bashrc
 fish -c "set -U fish_user_paths $HOME/.local/bin \$fish_user_paths"
 fish -c "set -U fish_user_paths $HOME/.yarn/bin \$fish_user_paths"
+fish -c "set -U fish_user_paths $HOME/go/bin \$fish_user_paths"
+fish -c "set -U fish_user_paths $HOME/.cargo/bin \$fish_user_paths"
 ######### end ###########
 
 #######################################
