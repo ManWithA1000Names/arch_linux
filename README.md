@@ -2,6 +2,7 @@
 
 ### to do
 
-- [ ] Fix bluetooth
-- [x] lunarvim
-- [ ] figure out nextcloud
+- [x] Fix bluetooth
+- [x] lightdm correct resolution
+- [x] browser extensions
+- [x] login image
