@@ -19,3 +19,8 @@ if cd PhotoGIMP-1.0; then
 else
 	rm -rf PhotoGIMP-1.0
 fi
+echo -n "remove install script? [Y/n]"
+read -r line
+if ! [[ "$line" == "n" || "$line" == "no" || "$line" == "NO" || "$line" == "No" || "$line" == "nO" ]]; then
+	rm -rf ~/install_photo_gimp.sh
+fi
