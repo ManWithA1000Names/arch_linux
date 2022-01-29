@@ -2,7 +2,7 @@
 
 gimp &
 gimp_pid=$!
-curl https://codeload.github.com/Diolinux/PhotoGIMP/tar.gz/refs/tags/1.0 --output PhotoGIMP.tar.gz
+curl -s https://codeload.github.com/Diolinux/PhotoGIMP/tar.gz/refs/tags/1.0 --output PhotoGIMP.tar.gz
 tar -xf ./PhotoGIMP.tar.gz
 rm ./PhotoGIMP.tar.gz
 mkdir -p ./.icons
