@@ -4,13 +4,11 @@ sudo aura --noconfirm -A "brave-bin"
 gh auth login
 gh repo clone dear-configs
 gh config set -h github.com git_protocol https
-cd dear-configs || exit 0
-./deploy.fish
 timedatectl set-timezone "Europe/Athens"
 fish -c "fisher install ilancosman/tide"
-albert &
-lxappearance &
-~/install_photo_gimp.sh &
+albert &>/dev/null &
+lxappearance &>/dev/null &
+~/install_photo_gimp.sh &>/dev/null &
 # lvim
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 # formatters
@@ -33,6 +31,8 @@ touch ~/.config/lvim/ftplugin/julia.lua
 	echo 'require("lspconfig").julials.setup(opts)'
 } >~/.config/lvim/ftplugin/julia.lua
 lvim ~/.config/lvim/config.lua
+cd dear-configs || exit 0
+./deploy.fish
 wait
 awesome-client "awesome.restart()"
 cd ~ && sudo rm -rf ./arch_linux_final.sh
