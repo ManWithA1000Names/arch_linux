@@ -8,7 +8,6 @@ timedatectl set-timezone "Europe/Athens"
 fish -c "fisher install ilancosman/tide"
 albert &>/dev/null &
 lxappearance &>/dev/null &
-~/install_photo_gimp.sh &>/dev/null &
 # lvim
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 # formatters
