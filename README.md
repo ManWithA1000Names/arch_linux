@@ -1,8 +1,7 @@
 # Installation scripts for arch linux
 
-### todo
+### to do
 
 - [ ] Fix bluetooth
-- [ ] make lvim install headless
+- [x] lunarvim
 - [ ] figure out nextcloud
-- [ ] install gimp in the final.sh

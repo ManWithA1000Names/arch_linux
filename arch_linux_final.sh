@@ -29,9 +29,9 @@ touch ~/.config/lvim/ftplugin/julia.lua
 	echo 'opts = require("lvim.lsp").get_common_opts()'
 	echo 'require("lspconfig").julials.setup(opts)'
 } >~/.config/lvim/ftplugin/julia.lua
-lvim ~/.config/lvim/config.lua
 cd dear-configs || exit 0
 ./deploy.fish
+lvim ~/.config/lvim/config.lua
 wait
 awesome-client "awesome.restart()"
 cd ~ && sudo rm -rf ./arch_linux_final.sh
