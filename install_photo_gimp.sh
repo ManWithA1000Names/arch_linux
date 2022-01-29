@@ -1,6 +1,6 @@
 #!/bin/bash
 
-gimp &
+gimp &>/dev/null &
 gimp_pid=$!
 curl https://codeload.github.com/Diolinux/PhotoGIMP/tar.gz/refs/tags/1.0 --output PhotoGIMP.tar.gz
 tar -xf ./PhotoGIMP.tar.gz
