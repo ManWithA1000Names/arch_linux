@@ -45,7 +45,7 @@ sudo aura --noconfirm -S "xf86-video-fbdev"
 #####################################
 ### Install Programming Languages ###
 #####################################
-sudo aura --noconfirm -S go lua rustup yarn julia python-pip
+sudo aura --noconfirm -S go lua rustup yarn julia python-pip jdk-openjdk
 yarn global add typescript
 rustup default stable
 go env -w "GOPRIVATE=github.com/ManWithA1000Names/*"
