@@ -115,10 +115,8 @@ sudo aura --noconfirm -A "nerd-fonts-fira-code"
 ######################################
 ### Installing additional Programs ###
 ######################################
-sudo aura --noconfirm -S "signal-desktop" "github-cli" pavucontrol zathura mpv vlc zathura-pdf-poppler steam fuse2 gimp
-echo "check that github-cli is installed"
-gh
-sleep 200
+sudo aura --noconfirm -S "signal-desktop" pavucontrol zathura mpv vlc zathura-pdf-poppler steam gimp
+sudo aura --noconfirm -S "github-cli"
 sudo aura --noconfirm -A "albert-bin" "popcorntime-bin"
 yarn global add webtorrent-cli
 # nextcloud
