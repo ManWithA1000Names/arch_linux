@@ -2,7 +2,7 @@
 
 ### to do
 
-- [x] Fix bluetooth
+- [ ] Fix bluetooth
 - [x] lightdm correct resolution
 - [x] browser extensions
-- [x] login image
+- [ ] login image
