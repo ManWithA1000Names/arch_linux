@@ -39,9 +39,6 @@ sudo sed -i "s/#display-setup-script=.*/display-setup-script=\/etc\/lightdm\/Xse
 echo "xrandr -s 1920x1080" | sudo tee /etc/lightdm/Xsetup
 sudo chmod +x /etc/lightdm/Xsetup
 sudo cp "$HOME/avatar.jpg" "/var/lib/AccountsService/icons/"
-sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.jpg/" "/var/lib/AccountsService/users/$USER"
-echo "finished sed for icon"
-sleep 100
 sudo systemctl enable lightdm
 ############## end #############
 
@@ -172,6 +169,12 @@ fish -c "set -U fish_user_paths $HOME/.cargo/bin \$fish_user_paths"
 #######################################
 sudo aura -B
 ################ end ##################
+
+##################
+### Set avatar ###
+##################
+sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.jpg/" "/var/lib/AccountsService/users/$USER"
+##################
 
 ####################
 ### final reboot ###
