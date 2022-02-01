@@ -22,19 +22,24 @@ fish -c "set -U fish_greeting"
 ################################
 ### Install Xorg && LightDM ####
 ################################
+# install
 sudo aura --noconfirm -S lightdm xorg lightdm-webkit2-greeter
 sudo aura --noconfirm -A lightdm-webkit-theme-aether
+# xorg stuff
 echo "Xcursor.size: 27" >>.Xresources
 echo "Xft.dpi: 108" >>.Xresources
 #echo "xrandr --output HDMI-0 --off --output HDMI-1 --off --output HDMI-2 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3440x1440 --pos 721x0 --rotate normal --output DP-3 --off --output DP-4 --mode 5120x1440 --pos 0x1440 --rotate normal --output DP-5 --off" |  sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
 echo "xrandr -s 1920x1080" | sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
 sudo chmod +x /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
+# lightdm stuff
 sudo sed -i 's/#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
 sudo sed -i 's/#user-session=.*/user-session=awesome/' /etc/lightdm/lightdm.conf
 sudo sed -i "s/#display-setup-script=.*/display-setup-script=\/etc\/lightdm\/Xsetup/" /etc/lightdm/lightdm.conf
 #echo "xrandr --output HDMI-0 --off --output HDMI-1 --off --output HDMI-2 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3440x1440 --pos 721x0 --rotate normal --output DP-3 --off --output DP-4 --mode 5120x1440 --pos 0x1440 --rotate normal --output DP-5 --off" |  sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
 echo "xrandr -s 1920x1080" | sudo tee /etc/lightdm/Xsetup
 sudo chmod +x /etc/lightdm/Xsetup
+sudo cp "$HOME/avatar.jpg" "/var/lib/AccountsService/icons/"
+sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.png/" "/var/lib/AccountsService/users/$USER"
 sudo systemctl enable lightdm
 ############## end #############
 
@@ -44,8 +49,8 @@ sudo systemctl enable lightdm
 if ! lsmod | grep btusb; then
 	sudo modprobe btusb
 fi
-sudo systemctl start bluetooth.service
-sudo systemctl enable bluetooth.service
+sudo systemctl enable bluetooth
+sudo systemctl start bluetooth
 ###### end ######
 
 #######################
