@@ -39,7 +39,7 @@ sudo sed -i "s/#display-setup-script=.*/display-setup-script=\/etc\/lightdm\/Xse
 echo "xrandr -s 1920x1080" | sudo tee /etc/lightdm/Xsetup
 sudo chmod +x /etc/lightdm/Xsetup
 sudo cp "$HOME/avatar.jpg" "/var/lib/AccountsService/icons/"
-sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.png/" "/var/lib/AccountsService/users/$USER"
+sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.jpg/" "/var/lib/AccountsService/users/$USER"
 sudo systemctl enable lightdm
 ############## end #############
 
