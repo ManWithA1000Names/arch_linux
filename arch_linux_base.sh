@@ -21,6 +21,8 @@ echo "/home/$new_user/arch_linux_setup.sh" >>"$new_home/.bashrc"
 ###############################
 # reboot needs to happen here #
 ###############################
-echo "rebooting to user :)"
-sleep 3
-poweroff
+echo "Reboot to user? [Y/n]"
+read -r line
+if ! [[ "${line,,}" == "no" || "${line,,}" == "n" ]]; then
+	poweroff
+fi
