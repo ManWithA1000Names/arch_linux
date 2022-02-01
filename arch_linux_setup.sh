@@ -117,7 +117,7 @@ sudo aura --noconfirm -A "nerd-fonts-fira-code"
 ######################################
 sudo aura --noconfirm -S "signal-desktop" pavucontrol zathura vlc zathura-pdf-poppler steam gimp github-cli fuse2
 sudo aura --noconfirm -S mpv
-sudo aura --noconfirm -A "albert-bin" "popcorntime-bin"
+sudo aura --noconfirm -A "albert-bin" "popcorntime-bin" "onlyoffice-bin" "stacer"
 yarn global add webtorrent-cli
 # nextcloud
 if [[ ! -d ".local/bin" ]]; then
