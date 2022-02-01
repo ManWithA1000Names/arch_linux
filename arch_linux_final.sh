@@ -8,7 +8,7 @@ timedatectl set-timezone "Europe/Athens"
 fish -c "fisher install ilancosman/tide"
 albert &>/dev/null &
 lxappearance &>/dev/null &
-# lvim
+# {{{ lvim
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 # formatters
 yarn global add prettier
@@ -29,6 +29,7 @@ touch ~/.config/lvim/ftplugin/julia.lua
 	echo 'opts = require("lvim.lsp").get_common_opts()'
 	echo 'require("lspconfig").julials.setup(opts)'
 } >~/.config/lvim/ftplugin/julia.lua
+# }}}
 cd dear-configs || exit 0
 ./deploy.fish
 file=$(ls ~/.config/awesome/configuration/user-profile/*.png)
