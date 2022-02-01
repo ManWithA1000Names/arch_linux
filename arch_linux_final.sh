@@ -32,12 +32,18 @@ touch ~/.config/lvim/ftplugin/julia.lua
 # }}}
 cd dear-configs || exit 0
 ./deploy.fish
-file=$(ls ~/.config/awesome/configuration/user-profile/*.png)
-sudo cp "$HOME/.config/awesome/configuration/user-profile/$file" "/var/lib/AccountsService/icons/avatar.png"
-sudo sed -i "s/Icon=.*/Icon=/var/lib/AccountsService/icons/avatar.png/" "/var/lib/AccountsService/users/$USER"
-mv "$HOME/.config/awesome/configuration/user-profile/$file" "$HOME/.config/awesome/configuration/user-profile/$USER.png"
+if cd ~/.config/awesome/configuration/user-profile; then
+	for f in *.png; do
+		file="$f"
+		break
+	done
+	sudo cp "$HOME/.config/awesome/configuration/user-profile/$file" "/var/lib/AccountsService/icons/avatar.png"
+	sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.png/" "/var/lib/AccountsService/users/$USER"
+	mv "$HOME/.config/awesome/configuration/user-profile/$file" "$HOME/.config/awesome/configuration/user-profile/$USER.png"
+fi
 lvim ~/.config/lvim/config.lua
 wait
 awesome-client "awesome.restart()"
 cd ~ && sudo rm -rf ./arch_linux_final.sh
 killall kitty
+killall alacritty
