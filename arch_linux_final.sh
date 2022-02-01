@@ -32,7 +32,10 @@ touch ~/.config/lvim/ftplugin/julia.lua
 # }}}
 cd dear-configs || exit 0
 ./deploy.fish
+sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.jpg/" "/var/lib/AccountsService/users/$USER"
 mv "$HOME/.config/awesome/configuration/user-profile/avatar.jpg" "$HOME/.config/awesome/configuration/user-profile/$USER.jpg"
+echo "did this error?"
+sleep 100
 lvim ~/.config/lvim/config.lua
 wait
 awesome-client "awesome.restart()"
