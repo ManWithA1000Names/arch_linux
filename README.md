@@ -2,8 +2,8 @@
 
 ### to do
 
-- [ ] Fix bluetooth
+- [x] Fix bluetooth
 - [x] lightdm correct resolution
 - [x] browser extensions
 - [x] login image
-- [ ] 5120x1440 login image
+- [x] 5120x1440 login image
