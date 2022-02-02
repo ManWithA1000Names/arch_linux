@@ -18,7 +18,7 @@ cargo install stylua
 # linters
 pip install flake8 codespell
 sudo aura --noconfirm -S shellcheck
-go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.43.0@latest
+go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 # julia language server
 mkdir -p ~/.julia/environments
 julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("LanguageServer")'
@@ -32,10 +32,10 @@ touch ~/.config/lvim/ftplugin/julia.lua
 # }}}
 cd dear-configs || exit 0
 ./deploy.fish
-sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.jpg/" "/var/lib/AccountsService/users/$USER"
-mv "$HOME/.config/awesome/configuration/user-profile/avatar.jpg" "$HOME/.config/awesome/configuration/user-profile/$USER.jpg"
-echo "did this error?"
-sleep 100
+# {{{ avatar stuff
+sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.png/" "/var/lib/AccountsService/users/$USER"
+mv ~/avatar.png "$HOME/.config/awesome/configuration/user-profile/$USER.png"
+# }}}
 lvim ~/.config/lvim/config.lua
 wait
 awesome-client "awesome.restart()"

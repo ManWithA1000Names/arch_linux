@@ -38,7 +38,7 @@ sudo sed -i "s/#display-setup-script=.*/display-setup-script=\/etc\/lightdm\/Xse
 #echo "xrandr --output HDMI-0 --off --output HDMI-1 --off --output HDMI-2 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3440x1440 --pos 721x0 --rotate normal --output DP-3 --off --output DP-4 --mode 5120x1440 --pos 0x1440 --rotate normal --output DP-5 --off" |  sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
 echo "xrandr -s 1920x1080" | sudo tee /etc/lightdm/Xsetup
 sudo chmod +x /etc/lightdm/Xsetup
-sudo cp "$HOME/avatar.jpg" "/var/lib/AccountsService/icons/"
+sudo cp "$HOME/avatar.png" "/var/lib/AccountsService/icons/"
 sudo systemctl enable lightdm
 ############## end #############
 
@@ -173,7 +173,7 @@ sudo aura -B
 ##################
 ### Set avatar ###
 ##################
-sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.jpg/" "/var/lib/AccountsService/users/$USER"
+sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.png/" "/var/lib/AccountsService/users/$USER"
 ##################
 
 ####################
