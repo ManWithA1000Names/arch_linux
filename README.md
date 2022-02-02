@@ -5,4 +5,4 @@
 - [ ] Fix bluetooth
 - [x] lightdm correct resolution
 - [x] browser extensions
-- [ ] login image
+- [x] login image
