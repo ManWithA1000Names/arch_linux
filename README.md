@@ -6,3 +6,4 @@
 - [x] lightdm correct resolution
 - [x] browser extensions
 - [x] login image
+- [ ] 5120x1440 login image
