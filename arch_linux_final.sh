@@ -33,7 +33,7 @@ touch ~/.config/lvim/ftplugin/julia.lua
 cd dear-configs || exit 0
 ./deploy.fish
 # {{{ avatar stuff
-sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.png/" "/var/lib/AccountsService/users/$USER"
+# sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.png/" "/var/lib/AccountsService/users/$USER"
 mv ~/avatar.png "$HOME/.config/awesome/configuration/user-profile/$USER.png"
 # }}}
 lvim ~/.config/lvim/config.lua

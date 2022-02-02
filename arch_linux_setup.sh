@@ -38,6 +38,12 @@ sudo sed -i "s/#display-setup-script=.*/display-setup-script=\/etc\/lightdm\/Xse
 #echo "xrandr --output HDMI-0 --off --output HDMI-1 --off --output HDMI-2 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3440x1440 --pos 721x0 --rotate normal --output DP-3 --off --output DP-4 --mode 5120x1440 --pos 0x1440 --rotate normal --output DP-5 --off" |  sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
 echo "xrandr -s 1920x1080" | sudo tee /etc/lightdm/Xsetup
 sudo chmod +x /etc/lightdm/Xsetup
+sudo mkdir -p "/var/lib/AccountsService/users"
+echo "[User]" | sudo tee "/var/lib/AccountsService/users/$USER"
+echo "Session=" | sudo tee -a "/var/lib/AccountsService/users/$USER"
+echo "XSession=awesome" | sudo tee -a "/var/lib/AccountsService/users/$USER"
+echo "Icon=/var/lib/AccountsService/icons/avatar.png" | sudo tee -a "/var/lib/AccountsService/users/$USER"
+echo "SystemAccount=false" | sudo tee -a "/var/lib/AccountsService/users/$USER"
 sudo cp "$HOME/avatar.png" "/var/lib/AccountsService/icons/"
 sudo systemctl enable lightdm
 ############## end #############
@@ -48,7 +54,7 @@ sudo systemctl enable lightdm
 if ! lsmod | grep "btusb"; then
 	sudo modprobe "btusb"
 	echo "# Load bluetooth kernel module at boot by systemd" | sudo tee "/etc/modules-load.d/btusb.conf" &>/dev/null
-	echo "btusb" | sudo tee "/etc/modules-load.d/btusb.conf" &>/dev/null
+	echo "btusb" | sudo tee -a "/etc/modules-load.d/btusb.conf" &>/dev/null
 fi
 sudo systemctl start bluetooth
 sudo systemctl enable bluetooth
