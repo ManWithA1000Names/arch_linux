@@ -46,6 +46,7 @@ echo "Icon=/var/lib/AccountsService/icons/avatar.png" | sudo tee -a "/var/lib/Ac
 echo "SystemAccount=false" | sudo tee -a "/var/lib/AccountsService/users/$USER"
 sudo cp "$HOME/avatar.png" "/var/lib/AccountsService/icons/"
 sudo mv "$HOME/background.jpg" "/usr/share/lightdm-webkit/themes/lightdm-webkit-theme-aether/src/img/wallpapers/space-1.jpg"
+sleep 100
 sudo systemctl enable lightdm
 ############## end #############
 
