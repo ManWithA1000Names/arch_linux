@@ -69,8 +69,12 @@ go env -w "GOPRIVATE=github.com/ManWithA1000Names/*"
 #######################################################
 ### Install Awesome and all the Floppy dependencies ###
 #######################################################
+sudo aura --noconfirm -A "lua-lgi-git"
 # core dependencies
-sudo aura --noconfirm -A awesome-git picom-git
+if ! sudo aura --noconfirm -A awesome-git picom-git; then
+	echo "failed to install awesome-git. Aborting..."
+	exit 1
+fi
 # additional dependencies
 sudo aura --noconfirm -S inter-font pulseaudio alsa-utils pulseaudio-alsa feh maim xclip imagemagick blueman ffmpeg iproute2 iw thunar papirus-icon-theme lxappearance gpick bluez bluez-utils rofi
 # minor desktop changes
