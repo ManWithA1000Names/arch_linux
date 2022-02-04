@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "$HOME" || exit 1
+
 ####################
 ### Install aura ###
 ####################
@@ -69,6 +71,8 @@ go env -w "GOPRIVATE=github.com/ManWithA1000Names/*"
 #######################################################
 ### Install Awesome and all the Floppy dependencies ###
 #######################################################
+# my awesome config for some reason is not working :)
+# TODO: fix my shit or their shit :)
 sudo aura --noconfirm -A "lua-lgi-git"
 # core dependencies
 if ! sudo aura --noconfirm -A awesome-git picom-git; then
@@ -158,7 +162,6 @@ fish -c "fisher install jorgebucaran/nvm.fish jethrokuan/z"
 #########################
 ### edit config files ###
 #########################
-sed -i '$d' .bashrc
 fish -c "set -U fish_user_paths $HOME/.local/bin \$fish_user_paths"
 fish -c "set -U fish_user_paths $HOME/.yarn/bin \$fish_user_paths"
 fish -c "set -U fish_user_paths $HOME/go/bin \$fish_user_paths"
@@ -188,4 +191,4 @@ echo "Restarting in 5 seconds"
 echo "Remember to run the arch_linux_final.sh when you log in :)"
 sleep 5
 reboot
-###### end ######### TODO: find out how to do bluetooth stuff bluez/bluez-utils/blueman are all installed but it still can't find bluetooth service
+###### end #########

@@ -18,7 +18,7 @@ mv ~/arch_linux/avatar.png "$new_home"
 mv ~/arch_linux/background.jpg "$new_home"
 mv ~/arch_linux/Kripton.tar.xz "$new_home"
 mv ~/arch_linux/volantes_light_cursors.tar.gz "$new_home"
-echo "/home/$new_user/arch_linux_setup.sh" >>"$new_home/.bashrc"
+arch-chroot /mnt /usr/bin/runuser -u "$new_user" -- "/home/$new_user/arch_linux_setup.sh"
 ####### end ########
 
 ###############################
