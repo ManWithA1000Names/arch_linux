@@ -180,9 +180,5 @@ sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.png/" "/v
 ###############
 ### CONFIGS ###
 ###############
-git clone http://git.my.cloud/ManWithA1000Names/dear-configs.git
-cd dear-configs || exit 0
-./deploy.fish
-mv ~/avatar.png "$HOME/.config/awesome/configuration/user-profile/$USER.png"
 echo "$HOME/arch_linux_final.sh" >>.bashrc
 ##### end #####

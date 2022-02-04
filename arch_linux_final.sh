@@ -1,4 +1,5 @@
 #!/bin/bash
+git clone http://git.my.cloud/ManWithA1000Names/dear-configs.git &>/dev/null &
 timedatectl set-timezone "Europe/Athens"
 lxappearance &>/dev/null &
 sudo aura --noconfirm -A "brave-bin" &>/dev/null &
@@ -22,6 +23,9 @@ touch ~/.config/lvim/ftplugin/julia.lua
 	echo 'opts = require("lvim.lsp").get_common_opts()'
 	echo 'require("lspconfig").julials.setup(opts)'
 } >~/.config/lvim/ftplugin/julia.lua
+cd dear-configs || exit 0
+./deploy.fish
+mv ~/avatar.png "$HOME/.config/awesome/configuration/user-profile/$USER.png"
 lvim ~/.config/lvim/config.lua
 wait
 cd ~ && sudo rm -rf ./arch_linux_final.sh
