@@ -17,7 +17,7 @@ rm -rf aura-bin
 ### Install FISH ###
 ####################
 sudo aura --noconfirm -Sy fish
-sudo usermod --shell /user/bin/fish "$USER"
+sudo usermod --shell /usr/bin/fish "$USER"
 fish -c "set -U fish_greeting"
 ####### end ########
 
@@ -175,7 +175,6 @@ sudo aura -B
 ##################
 sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.png/" "/var/lib/AccountsService/users/$USER"
 ###### end #######
-
 
 ###############
 ### CONFIGS ###
