@@ -73,14 +73,10 @@ go env -w "GOPRIVATE=github.com/ManWithA1000Names/*"
 #######################################################
 # my awesome config for some reason is not working :)
 # TODO: fix my shit or their shit :)
-sudo aura --noconfirm -A "lua-lgi-git"
 # core dependencies
-if ! sudo aura --noconfirm -A awesome-git picom-git; then
-	echo "failed to install awesome-git. Aborting..."
-	exit 1
-fi
+sudo aura --noconfirm -A picom-git
 # additional dependencies
-sudo aura --noconfirm -S inter-font pulseaudio alsa-utils pulseaudio-alsa feh maim xclip imagemagick blueman ffmpeg iproute2 iw thunar papirus-icon-theme lxappearance gpick bluez bluez-utils rofi
+sudo aura --noconfirm -S inter-font pulseaudio alsa-utils pulseaudio-alsa feh maim xclip imagemagick blueman ffmpeg iproute2 iw thunar papirus-icon-theme lxappearance gpick bluez bluez-utils rofi awesome
 # minor desktop changes
 # gnome theme
 tar -xf ./Kripton.tar.xz
