@@ -27,7 +27,7 @@ sed -i "s/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/" /mnt/etc/sudoers
 ###############################
 # reboot needs to happen here #
 ###############################
-echo "Reboot to user? [Y/n]"
+echo -n "Reboot to user? [Y/n] "
 read -r line
 if ! [[ "${line,,}" == "no" || "${line,,}" == "n" ]]; then
 	poweroff
