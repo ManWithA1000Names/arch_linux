@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo echo "hello"
 git clone http://git.my.cloud/ManWithA1000Names/dear-configs.git &>/dev/null &
 timedatectl set-timezone "Europe/Athens"
 lxappearance &>/dev/null &
