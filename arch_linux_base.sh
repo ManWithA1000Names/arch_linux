@@ -18,7 +18,10 @@ mv ~/arch_linux/avatar.png "$new_home"
 mv ~/arch_linux/background.jpg "$new_home"
 mv ~/arch_linux/Kripton.tar.xz "$new_home"
 mv ~/arch_linux/volantes_light_cursors.tar.gz "$new_home"
+sed -i "s/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/" /mnt/etc/sudoers
 arch-chroot /mnt /usr/bin/runuser -u "$new_user" -- "/home/$new_user/arch_linux_setup.sh"
+sed -i "s/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/" /mnt/etc/sudoers
+sed -i "s/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/" /mnt/etc/sudoers
 ####### end ########
 
 ###############################
