@@ -177,7 +177,8 @@ sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.png/" "/v
 ###### end #######
 
 ###############
-### CONFIGS ###
+### cleanup ###
 ###############
 echo "$HOME/arch_linux_final.sh" >>.bashrc
+rm -f "$HOME/arch_linux_setup.sh"
 ##### end #####
