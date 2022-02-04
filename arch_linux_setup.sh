@@ -17,7 +17,7 @@ rm -rf aura-bin
 ### Install FISH ###
 ####################
 sudo aura --noconfirm -Sy fish
-chsh -s /usr/bin/fish
+sudo usermod --shell /user/bin/fish "$USER"
 fish -c "set -U fish_greeting"
 ####### end ########
 
@@ -152,7 +152,7 @@ xdg-mime default org.pwmt.zathura-pdf-poppler.desktop application/pdf
 ### Fish programs ###
 #####################
 fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
-fish -c "fisher install jorgebucaran/nvm.fish jethrokuan/z"
+fish -c "fisher install jorgebucaran/nvm.fish jethrokuan/z ilancosman/tide"
 ######## end ########
 
 #########################
@@ -174,6 +174,47 @@ sudo aura -B
 ### Set avatar ###
 ##################
 sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.png/" "/var/lib/AccountsService/users/$USER"
-##################
+###### end #######
 
-./arch_linux_final.sh
+####################
+### Fix TimeZone ###
+####################
+timedatectl set-timezone "Europe/Athens"
+####### end ########
+
+################
+### LunarVim ###
+################
+bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+# formatters
+yarn global add prettier
+go install mvdan.cc/sh/v3/cmd/shfmt@latest
+pip install git+https://github.com/psf/black
+cargo install stylua
+# linters
+pip install flake8 codespell
+sudo aura --noconfirm -S shellcheck
+go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+# julia language server
+mkdir -p ~/.julia/environments
+julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("LanguageServer")'
+mkdir -p ~/.config/lvim/ftplugin
+touch ~/.config/lvim/ftplugin/julia.lua
+{
+	echo "local opts = {}"
+	echo 'opts = require("lvim.lsp").get_common_opts()'
+	echo 'require("lspconfig").julials.setup(opts)'
+} >~/.config/lvim/ftplugin/julia.lua
+###### end #####
+# }}}
+
+###############
+### CONFIGS ###
+###############
+git clone http://git.my.cloud/ManWithA1000Names/dear-configs.git
+cd dear-configs || exit 0
+./deploy.fish
+mv ~/avatar.png "$HOME/.config/awesome/configuration/user-profile/$USER.png"
+##### end #####
+lvim ~/.config/lvim/config.lua
+echo "$HOME/arch_linux_final.sh" >>.bashrc
