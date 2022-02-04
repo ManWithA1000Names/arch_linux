@@ -176,15 +176,4 @@ sudo aura -B
 sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.png/" "/var/lib/AccountsService/users/$USER"
 ##################
 
-####################
-### final reboot ###
-####################
-sudo rm ~/arch_linux_setup.sh
-echo ""
-echo ""
-echo ""
-echo "Restarting in 5 seconds"
-echo "Remember to run the arch_linux_final.sh when you log in :)"
-sleep 5
-reboot
-###### end #########
+./arch_linux_final.sh
