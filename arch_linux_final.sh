@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo echo "hello"
-git clone http://git.my.cloud/ManWithA1000Names/dear-configs.git -b arch &>/dev/null &
+git clone http://git.my.cloud/ManWithA1000Names/dear-configs.git -b arch &>/dev/null & # FIXME: gitea repo is not tracking arch branch
 timedatectl set-timezone "Europe/Athens"
 lxappearance &>/dev/null &
 albert &>/dev/null &
