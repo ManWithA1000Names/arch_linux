@@ -176,11 +176,6 @@ sudo aura -B
 sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.png/" "/var/lib/AccountsService/users/$USER"
 ###### end #######
 
-####################
-### Fix TimeZone ###
-####################
-timedatectl set-timezone "Europe/Athens"
-####### end ########
 
 ################
 ### LunarVim ###
@@ -206,7 +201,6 @@ touch ~/.config/lvim/ftplugin/julia.lua
 	echo 'require("lspconfig").julials.setup(opts)'
 } >~/.config/lvim/ftplugin/julia.lua
 ###### end #####
-# }}}
 
 ###############
 ### CONFIGS ###
