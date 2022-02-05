@@ -208,6 +208,7 @@ cd dear-configs || exit 0
 fish -c ./deploy.fish
 ##### end #####
 
+echo "cleaning up..."
 wait
 ###############
 ### cleanup ###
