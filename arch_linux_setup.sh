@@ -203,8 +203,8 @@ touch ~/.config/lvim/ftplugin/julia.lua
 ###############
 ### CONFIGs ###
 ###############
-git clone http://git.my.cloud/ManWithA1000Names/dear-configs.git -b arch
-cd dear-configs || exit 0
+git clone http://git.my.cloud/ManWithA1000Names/.dotfiles.git
+cd .dotfiles || exit 0
 fish -c ./deploy.fish
 ##### end #####
 
