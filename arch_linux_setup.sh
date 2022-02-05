@@ -123,19 +123,13 @@ sudo aura --noconfirm -A "nerd-fonts-fira-code"
 ######################################
 ### Installing additional Programs ###
 ######################################
-sudo aura --noconfirm -S "signal-desktop" pavucontrol zathura vlc zathura-pdf-poppler steam gimp github-cli fuse2
-sudo aura --noconfirm -S mpv
-sudo aura --noconfirm -A "albert-bin" "popcorntime-bin" "onlyoffice-bin" "stacer"
-yarn global add webtorrent-cli
-# nextcloud
 if [[ ! -d ".local/bin" ]]; then
 	mkdir -p .local/bin
 fi
-# cd .local/bin || exit 1
-# link=$(curl https://download.nextcloud.com/desktop/daily/Linux/ | grep -Eo 'Nextcloud-[^"<]+' | tail -n 1)
-# curl "https://download.nextcloud.com/desktop/daily/Linux/$link" --output nextcloud
-# chmod +x ./nextcloud
-# cd ~ || exit 1
+sudo aura --noconfirm -S signal-desktop pavucontrol zathura vlc zathura-pdf-poppler steam gimp github-cli fuse2 gopass git-credential-gopass
+sudo aura --noconfirm -S mpv
+sudo aura --noconfirm -A albert-bin popcorntime-bin onlyoffice-bin stacer
+yarn global add webtorrent-cli
 ############### end ##################
 
 #########################
@@ -212,7 +206,7 @@ touch ~/.config/lvim/ftplugin/julia.lua
 git clone http://git.my.cloud/ManWithA1000Names/dear-configs.git -b arch
 cd dear-configs || exit 0
 fish -c ./deploy.fish
-lvim +PackerSync +q
+./local/bin/lvim +PackerSync +q
 ##### end #####
 
 wait
