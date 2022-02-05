@@ -206,7 +206,7 @@ touch ~/.config/lvim/ftplugin/julia.lua
 git clone http://git.my.cloud/ManWithA1000Names/dear-configs.git -b arch
 cd dear-configs || exit 0
 fish -c ./deploy.fish
-./.local/bin/lvim +PackerSync +q
+~/.local/bin/lvim +PackerSync +q
 ##### end #####
 
 wait
