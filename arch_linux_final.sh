@@ -3,7 +3,7 @@
 timedatectl set-timezone "Europe/Athens"
 lxappearance &>/dev/null &
 albert &>/dev/null &
-sudo aura --noconfirm -A "brave-bin" &>/dev/null
+sudo aura --noconfirm -A "brave-bin"
 # formatters
 # yarn global add prettier &>/dev/null &
 # go install mvdan.cc/sh/v3/cmd/shfmt@latest &>/dev/null &
