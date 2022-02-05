@@ -65,7 +65,7 @@ sudo aura --noconfirm -S "xf86-video-fbdev"
 sudo aura --noconfirm -S go lua rustup yarn julia python-pip jdk-openjdk
 yarn global add typescript
 rustup default stable
-go env -w "GOPRIVATE=github.com/ManWithA1000Names/*"
+go env -w "GOPRIVATE=github.com/ManWithA1000Names/*,git.my.cloud/*"
 ############### end #################
 
 #######################################################
@@ -179,6 +179,43 @@ sudo aura -B
 sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.png/" "/var/lib/AccountsService/users/$USER"
 ###### end #######
 
+############
+### lvim ###
+############
+# formatters
+yarn global add prettier neovim tree-sitter-cli &>/dev/null &
+go install mvdan.cc/sh/v3/cmd/shfmt@latest &>/dev/null &
+pip install git+https://github.com/psf/black pynvim &>/dev/null &
+cargo install stylua &>/dev/null &
+# linters
+pip install flake8 codespell &>/dev/null &
+sudo aura --noconfirm -S shellcheck &>/dev/null &
+go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest &>/dev/null &
+wget https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh
+chmod +x ./install.sh
+./install.sh --no-install-dependencies
+rm ./install.sh
+mkdir -p ~/.julia/environments
+julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("LanguageServer")'
+mkdir -p ~/.config/lvim/ftplugin
+touch ~/.config/lvim/ftplugin/julia.lua
+{
+	echo "local opts = {}"
+	echo 'opts = require("lvim.lsp").get_common_opts()'
+	echo 'require("lspconfig").julials.setup(opts)'
+} >~/.config/lvim/ftplugin/julia.lua
+### end ###
+
+###############
+### CONFIGs ###
+###############
+git clone http://git.my.cloud/ManWithA1000Names/dear-configs.git -b arch
+cd dear-configs || exit 0
+fish -c ./deploy.fish
+lvim +PackerSync +q
+##### end #####
+
+wait
 ###############
 ### cleanup ###
 ###############
