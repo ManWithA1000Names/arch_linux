@@ -175,14 +175,14 @@ sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.png/" "/v
 ### lvim ###
 ############
 # formatters
-yarn global add prettier neovim tree-sitter-cli &>/dev/null &
-go install mvdan.cc/sh/v3/cmd/shfmt@latest &>/dev/null &
-pip install git+https://github.com/psf/black pynvim &>/dev/null &
-cargo install stylua &>/dev/null &
+yarn global add prettier neovim tree-sitter-cli
+go install mvdan.cc/sh/v3/cmd/shfmt@latest
+pip install git+https://github.com/psf/black pynvim
+cargo install stylua
 # linters
-pip install flake8 codespell &>/dev/null &
-sudo aura --noconfirm -S shellcheck &>/dev/null &
-go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest &>/dev/null &
+pip install flake8 codespell
+sudo aura --noconfirm -S shellcheck
+go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 wget https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh
 chmod +x ./install.sh
 ./install.sh --no-install-dependencies
