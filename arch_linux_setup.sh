@@ -71,10 +71,8 @@ go env -w "GOPRIVATE=github.com/ManWithA1000Names/*,git.my.cloud/*"
 #######################################################
 ### Install Awesome and all the Floppy dependencies ###
 #######################################################
-# my awesome config for some reason is not working :)
-# TODO: fix my shit or their shit :)
 # core dependencies
-if ! sudo aura --noconfirm -A picom-git awesome-git; then
+if ! sudo aura --noconfirm -A picom-git awesome-git xidlehook; then
 	echo "\u001b[38;5;99mFAILED TO INSTALL AWESOME"
 	exit 1
 fi
