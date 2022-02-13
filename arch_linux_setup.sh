@@ -54,8 +54,8 @@ sudo systemctl enable lightdm
 #######################
 ### NVIDIA Drivers ####
 #######################
-# sudo aura --noconfirm -S nvidia "nvidia-xconfig"
-# nvidia-xconfig
+sudo aura --noconfirm -S nvidia
+nvidia-xconfig
 #sudo aura --noconfirm -S "xf86-video-fbdev"
 ######### end #########
 
@@ -124,7 +124,8 @@ sudo aura --noconfirm -A "nerd-fonts-fira-code"
 if [[ ! -d ".local/bin" ]]; then
 	mkdir -p .local/bin
 fi
-sudo aura --noconfirm -S signal-desktop pavucontrol zathura vlc zathura-pdf-poppler steam gimp github-cli fuse2 gopass git-credential-gopass
+sudo aura --noconfirm -S signal-desktop pavucontrol vlc steam gimp github-cli fuse2 gopass git-credential-gopass
+sudo aura --noconfirm -S zathura zathura-pdf-poppler
 sudo aura --noconfirm -S mpv
 sudo aura --noconfirm -A albert-bin popcorntime-bin onlyoffice-bin stacer
 yarn global add webtorrent-cli
@@ -164,12 +165,6 @@ fish -c "set -U fish_user_paths $HOME/.cargo/bin \$fish_user_paths"
 #######################################
 sudo aura -B
 ################ end ##################
-
-##################
-### Set avatar ###
-##################
-sudo sed -i "s/Icon=.*/Icon=\/var\/lib\/AccountsService\/icons\/avatar.png/" "/var/lib/AccountsService/users/$USER"
-###### end #######
 
 ############
 ### lvim ###
