@@ -1,5 +1,7 @@
 # Installation scripts for arch linux
 
+still completly fucking broken
+
 ### to do
 
 - [x] Fix bluetooth
