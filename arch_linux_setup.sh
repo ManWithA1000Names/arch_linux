@@ -9,7 +9,6 @@ sudo pacman -S rustup --noconfirm
 rustup default stable
 ####### end ########
 
-
 ####################
 ### Install Paru ###
 ####################
@@ -45,8 +44,6 @@ fish -c "set -U fish_greeting"
 paru --noconfirm -S lightdm xorg lightdm-webkit2-greeter lightdm-webkit-theme-aether
 
 # xorg stuff
-echo "Xcursor.size: 27" >>.Xresources
-echo "Xft.dpi: 108" >>.Xresources
 # echo "xrandr --output HDMI-0 --off --output HDMI-1 --off --output HDMI-2 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3440x1440 --pos 721x0 --rotate normal --output DP-3 --off --output DP-4 --mode 5120x1440 --pos 0x1440 --rotate normal --output DP-5 --off" |  sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
 echo "xrandr -s 1920x1080" | sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
 sudo chmod +x /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
@@ -108,6 +105,8 @@ if cd dotfiles-rxhyn; then
 	mv config/* ~/.config/
 	mv misc/home/.config/starship ~/.config/
 	mv misc/home/.Xresources ~
+	echo "Xcursor.size: 27" >>.Xresources
+	echo "Xft.dpi: 108" >>.Xresources
 	mkdir -p ~/.fonts
 	mv misc/fonts/* ~/.fonts/
 	sudo mv misc/themes/gtk/Aesthetic-Night/* /usr/share/themes/
