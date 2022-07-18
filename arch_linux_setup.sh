@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 cd "$HOME" || exit 1
 
 ####################
