@@ -2,21 +2,15 @@
 
 cd "$HOME" || exit 1
 
-####################
-### Install aura ###
-####################
-git clone https://aur.archlinux.org/aura-bin.git
-cd aura-bin || exit 1
-makepkg
-sudo pacman --noconfirm -U ./*.pkg.*
-cd ~ || exit 1
-rm -rf aura-bin
-######## end #######
+######################
+### Update keyring ###
+######################
+paru --noconfirm -Sy archlinux-keyring
 
 ####################
 ### Install FISH ###
 ####################
-sudo aura --noconfirm -Sy fish
+paru --noconfirm -Sy fish
 sudo usermod --shell /usr/bin/fish "$USER"
 fish -c "set -U fish_greeting"
 ####### end ########
@@ -25,21 +19,22 @@ fish -c "set -U fish_greeting"
 ### Install Xorg && LightDM ####
 ################################
 # install
-sudo aura --noconfirm -S lightdm xorg lightdm-webkit2-greeter
-sudo aura --noconfirm -A lightdm-webkit-theme-aether
+paru --noconfirm -S lightdm xorg lightdm-webkit2-greeter lightdm-webkit-theme-aether
+
 # xorg stuff
 echo "Xcursor.size: 27" >>.Xresources
 echo "Xft.dpi: 108" >>.Xresources
 # echo "xrandr --output HDMI-0 --off --output HDMI-1 --off --output HDMI-2 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3440x1440 --pos 721x0 --rotate normal --output DP-3 --off --output DP-4 --mode 5120x1440 --pos 0x1440 --rotate normal --output DP-5 --off" |  sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
-# echo "xrandr -s 1920x1080" | sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
-# sudo chmod +x /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
+echo "xrandr -s 1920x1080" | sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
+sudo chmod +x /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
+
 # lightdm stuff
 sudo sed -i 's/#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
 sudo sed -i 's/#user-session=.*/user-session=awesome/' /etc/lightdm/lightdm.conf
-# sudo sed -i "s/#display-setup-script=.*/display-setup-script=\/etc\/lightdm\/Xsetup/" /etc/lightdm/lightdm.conf
+echo "xrandr -s 1920x1080" | sudo tee /etc/lightdm/Xsetup
+sudo chmod +x /etc/lightdm/Xsetup
+sudo sed -i "s/#display-setup-script=.*/display-setup-script=\/etc\/lightdm\/Xsetup/" /etc/lightdm/lightdm.conf
 # echo "xrandr --output HDMI-0 --off --output HDMI-1 --off --output HDMI-2 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3440x1440 --pos 721x0 --rotate normal --output DP-3 --off --output DP-4 --mode 5120x1440 --pos 0x1440 --rotate normal --output DP-5 --off" |  sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
-#echo "xrandr -s 1920x1080" | sudo tee /etc/lightdm/Xsetup
-# sudo chmod +x /etc/lightdm/Xsetup
 sudo mkdir -p "/var/lib/AccountsService/users"
 echo "[User]" | sudo tee "/var/lib/AccountsService/users/$USER"
 echo "Session=" | sudo tee -a "/var/lib/AccountsService/users/$USER"
@@ -54,35 +49,69 @@ sudo systemctl enable lightdm
 #######################
 ### NVIDIA Drivers ####
 #######################
-sudo aura --noconfirm -S nvidia
-nvidia-xconfig
-#sudo aura --noconfirm -S "xf86-video-fbdev"
+# paru -S nvidia
+# nvidia-xconfig
+paru --noconfirm -S "xf86-video-fbdev"
 ######### end #########
 
 #####################################
 ### Install Programming Languages ###
 #####################################
-sudo aura --noconfirm -S go lua rustup yarn julia python-pip jdk-openjdk
+paru --noconfirm -S go lua rustup yarn julia python-pip jdk-openjdk
 yarn global add typescript
 rustup default stable
 go env -w "GOPRIVATE=github.com/ManWithA1000Names/*,git.my.cloud/*"
 ############### end #################
 
-#######################################################
-### Install Awesome and all the Floppy dependencies ###
-#######################################################
+##################################################
+### Install Awesome and the rxhyn dependencies ###
+##################################################
+# awesomewm
+paru --noconfirm -S awesome-git
 # core dependencies
-if ! sudo aura --noconfirm -A picom-git awesome-git xidlehook; then
-	echo "\u001b[38;5;99mFAILED TO INSTALL AWESOME"
-	exit 1
-fi
+paru --noconfirm -S picom-git wezterm rofi acpi acpid acpi_call upower lxappearance-gtk3 \
+	jq inotify-tools polkit-gnome xdotool xclip gpick ffmpeg blueman redshift \
+	pipewire pipewire-alsa pipewire-pulse pamixer brightnessctl feh maim \
+	mpv mpd mpc mpdris2 python-mutagen ncmpcpp playerctl starship --needed
 # additional dependencies
-sudo aura --noconfirm -S inter-font pulseaudio alsa-utils pulseaudio-alsa feh maim xclip imagemagick blueman ffmpeg iproute2 iw thunar papirus-icon-theme lxappearance gpick bluez bluez-utils rofi
-# minor desktop changes
+paru --noconfirm -S inter-font imagemagick thunar papirus-icon-theme bluez bluez-utils
+# enable some services
+systemctl --user enable mpd.service
+
+# get the repo
+git clone --recurse-submodules --depth 1 https://github.com/manwitha1000names/dotfiles-rxhyn.git
+if cd dotfiles-rxhyn; then
+	git submodule --remote --merge
+	mkdir -p ~/.config/
+	mv config/* ~/.config/
+	mv misc/home/.config/starship ~/.config/
+	mv misc/home/.Xresources ~
+	mkdir -p ~/.fonts
+	mv misc/fonts/* ~/.fonts/
+	sudo mv misc/themes/gtk/Aesthetic-Night/* /usr/share/themes/
+	mkdir -p ~/.config/gtk-4.0
+	mv misc/themes/gtk/Aesthetic-Night-GTK4/* ~/.config/gtk-4.0/
+  mkdir ~/.config/gkt-3.0
+	echo "gtk-decoration-layout=close,maximize,minimize:menu" > ~/.config/gtk-3.0/settings.ini
+  mkdir -p ~/.themes
+  mv misc/themes/kvantum ~/.themes/
+  cd ..
+  rm -rf dotfiles-rxhyn
+fi
+
+#######################
+### Desktop Theming ###
+#######################
 # gnome theme
 tar -xf ./Kripton.tar.xz
 sudo mv ./Kripton /usr/share/themes/
 rm -rf ./Kripton.tar.xz
+sudo cp -rf themes/gtk/Aesthetic-Night/* /usr/share/themes/
+cp -rf themes/gtk/Aesthetic-Night-GTK4/* "$HOME/.config/gkt-4.0"
+echo "gtk-decoration-layout=close,maximize,minimize:menu" >"$HOME/.config/gtk-3.0/settings.ini"
+# kvantum theme
+mkdir -p "$HOME/.themes"
+cp -rf themes/kvantum "$HOME/.themes"
 # cursor
 tar -zxvf volantes_light_cursors.tar.gz
 sudo mv volantes_light_cursors /usr/share/icons
@@ -90,32 +119,32 @@ echo "[Icon Theme]" | sudo tee /usr/share/icons/default/index.theme
 echo "Inherits=volantes_light_cursors" | sudo tee -a /usr/share/icons/default/index.theme
 rm -rf ./volantes_light_cursors.tar.gz
 rm -rf ./volantes_light_cursors
+rm -rf themes
 #######################################################
 
 ############################
 ### Installing terminals ###
 ############################
-sudo aura --noconfirm -S kitty alacritty
+paru --noconfirm -S kitty alacritty
 ########### end ############
 
 ########################
 ### Installing Utils ###
 ########################
 # rust utils
-sudo aura --noconfirm -S exa fd ripgrep
+paru --noconfirm -S exa fd ripgrep
 # search / viewing
-sudo aura --noconfirm -S bat fzf peco htop openssh man-db neofetch netplan nvtop
+paru --noconfirm -S bat fzf peco htop openssh man-db neofetch netplan nvtop
 # zip utils
-sudo aura --noconfirm -S zip unzip
+paru --noconfirm -S zip unzip
 # xdg
-sudo aura --noconfirm -S xdg-utils xdg-user-dirs
+paru --noconfirm -S xdg-utils xdg-user-dirs
 ######## end ###########
 
 ########################
 ### Installing fonts ###
 ########################
-sudo aura --noconfirm -S "noto-fonts" "noto-fonts-emoji"
-sudo aura --noconfirm -A "nerd-fonts-fira-code"
+paru --noconfirm -S "noto-fonts" "noto-fonts-emoji" "nerd-fonts-fira-code"
 ######### end ##########
 
 ######################################
@@ -124,10 +153,9 @@ sudo aura --noconfirm -A "nerd-fonts-fira-code"
 if [[ ! -d ".local/bin" ]]; then
 	mkdir -p .local/bin
 fi
-sudo aura --noconfirm -S signal-desktop pavucontrol vlc steam gimp github-cli fuse2 gopass git-credential-gopass
-sudo aura --noconfirm -S zathura zathura-pdf-poppler
-sudo aura --noconfirm -S mpv
-sudo aura --noconfirm -A albert-bin popcorntime-bin onlyoffice-bin stacer
+paru --noconfirm -S signal-desktop vlc steam gimp github-cli fuse2 gopass git-credential-gopass \
+	zathura zathura-pdf-poppler \
+	albert-bin popcorntime-bin onlyoffice-bin stacer
 yarn global add webtorrent-cli
 ############### end ##################
 
@@ -135,7 +163,7 @@ yarn global add webtorrent-cli
 ### Text Editor Setup ###
 #########################
 # neovim
-sudo aura --noconfirm -S neovim
+paru --noconfirm -S neovim
 ########## end ##########
 
 #################
@@ -160,12 +188,6 @@ fish -c "set -U fish_user_paths $HOME/go/bin \$fish_user_paths"
 fish -c "set -U fish_user_paths $HOME/.cargo/bin \$fish_user_paths"
 ######### end ###########
 
-#######################################
-### create sudo aura recovery point ###
-#######################################
-sudo aura -B
-################ end ##################
-
 ############
 ### lvim ###
 ############
@@ -176,22 +198,21 @@ pip install git+https://github.com/psf/black pynvim
 cargo install stylua
 # linters
 pip install flake8 codespell
-sudo aura --noconfirm -S shellcheck
+paru --noconfirm -S shellcheck
 go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 wget https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh
 chmod +x ./install.sh
-./install.sh --no-install-dependencies
+./install.sh --no-install-dependencies --yes
 rm ./install.sh
-mkdir -p ~/.julia/environments
+mkdir -p ~/.julia/environments/nvim-lspconfig/
 julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("LanguageServer")'
-mkdir -p ~/.config/lvim/ftplugin
-touch ~/.config/lvim/ftplugin/julia.lua
-{
-	echo "local opts = {}"
-	echo 'opts = require("lvim.lsp").get_common_opts()'
-	echo 'require("lspconfig").julials.setup(opts)'
-} >~/.config/lvim/ftplugin/julia.lua
 ### end ###
+
+###############
+### Browser ###
+###############
+paru -S firefox thunderbird
+##### end #####
 
 ###############
 ### CONFIGs ###
@@ -199,6 +220,9 @@ touch ~/.config/lvim/ftplugin/julia.lua
 git clone http://git.my.cloud/ManWithA1000Names/.dotfiles.git
 cd .dotfiles || exit 0
 fish -c ./deploy.fish
+rm ~/.config/awesome/
+mv ~/config-rxhyn/* ~/.config/
+rm -r ~/config-rxhyn
 ##### end #####
 
 echo "cleaning up..."
