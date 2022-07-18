@@ -97,7 +97,11 @@ paru --noconfirm -S inter-font imagemagick thunar papirus-icon-theme bluez bluez
 # enable some services
 systemctl --user enable mpd.service
 
-# get the repo
+# my dotfiles
+git clone http://git.my.cloud/ManWithA1000Names/.dotfiles.git
+cd .dotfiles || exit 0
+fish -c ./deploy.fish
+# rxhyn dotfiles
 git clone --recurse-submodules --depth 1 https://github.com/manwitha1000names/dotfiles-rxhyn.git
 if cd dotfiles-rxhyn; then
 	git submodule --remote --merge
@@ -197,7 +201,7 @@ xdg-mime default org.pwmt.zathura-pdf-poppler.desktop application/pdf
 ### Fish programs ###
 #####################
 fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
-fish -c "fisher install jorgebucaran/nvm.fish jethrokuan/z ilancosman/tide"
+fish -c "fisher install jethrokuan/z ilancosman/tide"
 ######## end ########
 
 #########################
@@ -232,18 +236,7 @@ julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("Lan
 ###############
 ### Browser ###
 ###############
-paru -S firefox thunderbird
-##### end #####
-
-###############
-### CONFIGs ###
-###############
-git clone http://git.my.cloud/ManWithA1000Names/.dotfiles.git
-cd .dotfiles || exit 0
-fish -c ./deploy.fish
-rm ~/.config/awesome/
-mv ~/config-rxhyn/* ~/.config/
-rm -r ~/config-rxhyn
+paru --noconfirm -S firefox thunderbird
 ##### end #####
 
 echo "cleaning up..."
