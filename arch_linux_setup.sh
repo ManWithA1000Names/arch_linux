@@ -2,11 +2,6 @@
 
 cd "$HOME" || exit 1
 
-######################
-### Update keyring ###
-######################
-paru --noconfirm -Sy archlinux-keyring
-
 ####################
 ### Install Paru ###
 ####################
@@ -14,12 +9,16 @@ sudo pacman -S --needed base-devel
 git clone https://aur.archlinux.org/paru.git
 cd paru || exit 1
 if ! makepkg -si; then
-  echo "Failed to build Paru!"
-  exit 1
+	echo "Failed to build Paru!"
+	exit 1
 fi
 cd ..
+paru --gendb
 
-
+######################
+### Update keyring ###
+######################
+paru --noconfirm -Sy archlinux-keyring
 
 ####################
 ### Install FISH ###
@@ -105,12 +104,12 @@ if cd dotfiles-rxhyn; then
 	sudo mv misc/themes/gtk/Aesthetic-Night/* /usr/share/themes/
 	mkdir -p ~/.config/gtk-4.0
 	mv misc/themes/gtk/Aesthetic-Night-GTK4/* ~/.config/gtk-4.0/
-  mkdir ~/.config/gkt-3.0
-	echo "gtk-decoration-layout=close,maximize,minimize:menu" > ~/.config/gtk-3.0/settings.ini
-  mkdir -p ~/.themes
-  mv misc/themes/kvantum ~/.themes/
-  cd ..
-  rm -rf dotfiles-rxhyn
+	mkdir ~/.config/gkt-3.0
+	echo "gtk-decoration-layout=close,maximize,minimize:menu" >~/.config/gtk-3.0/settings.ini
+	mkdir -p ~/.themes
+	mv misc/themes/kvantum ~/.themes/
+	cd ..
+	rm -rf dotfiles-rxhyn
 fi
 
 #######################
