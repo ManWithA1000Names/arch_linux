@@ -99,8 +99,9 @@ systemctl --user enable mpd.service
 
 # my dotfiles
 git clone http://git.my.cloud/ManWithA1000Names/.dotfiles.git
-cd .dotfiles || exit 0
+cd .dotfiles || exit 1
 fish -c ./deploy.fish
+cd ..
 # rxhyn dotfiles
 git clone --recurse-submodules --depth 1 https://github.com/manwitha1000names/dotfiles-rxhyn.git
 if cd dotfiles-rxhyn; then
