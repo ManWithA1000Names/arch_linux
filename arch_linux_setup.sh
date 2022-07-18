@@ -8,6 +8,20 @@ cd "$HOME" || exit 1
 paru --noconfirm -Sy archlinux-keyring
 
 ####################
+### Install Paru ###
+####################
+sudo pacman -S --needed base-devel
+git clone https://aur.archlinux.org/paru.git
+cd paru || exit 1
+if ! makepkg -si; then
+  echo "Failed to build Paru!"
+  exit 1
+fi
+cd ..
+
+
+
+####################
 ### Install FISH ###
 ####################
 paru --noconfirm -Sy fish
