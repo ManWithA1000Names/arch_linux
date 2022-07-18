@@ -3,6 +3,14 @@
 cd "$HOME" || exit 1
 
 ####################
+### Install Rust ###
+####################
+sudo pacman -S rustup --noconfirm
+rustup default stable
+####### end ########
+
+
+####################
 ### Install Paru ###
 ####################
 sudo pacman -S --needed base-devel
@@ -14,11 +22,13 @@ if ! makepkg -si; then
 fi
 cd ..
 paru --gendb
+####### end ########
 
 ######################
 ### Update keyring ###
 ######################
 paru --noconfirm -Sy archlinux-keyring
+######## end #########
 
 ####################
 ### Install FISH ###
@@ -70,9 +80,8 @@ paru --noconfirm -S "xf86-video-fbdev"
 #####################################
 ### Install Programming Languages ###
 #####################################
-paru --noconfirm -S go lua rustup yarn julia python-pip jdk-openjdk
+paru --noconfirm -S go lua yarn julia python-pip jdk-openjdk
 yarn global add typescript
-rustup default stable
 go env -w "GOPRIVATE=github.com/ManWithA1000Names/*,git.my.cloud/*"
 ############### end #################
 
