@@ -15,7 +15,7 @@ rustup default stable
 sudo pacman -S --needed base-devel
 git clone https://aur.archlinux.org/paru.git
 cd paru || exit 1
-if ! makepkg -si; then
+if ! makepkg -si --noconfirm; then
 	echo "Failed to build Paru!"
 	exit 1
 fi
