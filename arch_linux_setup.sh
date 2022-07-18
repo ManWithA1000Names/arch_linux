@@ -95,7 +95,7 @@ paru --noconfirm -S picom-git wezterm rofi acpi acpid acpi_call upower lxappeara
 	pipewire pipewire-alsa pipewire-pulse pamixer brightnessctl feh maim \
 	mpv mpd mpc mpdris2 python-mutagen ncmpcpp playerctl starship --needed
 # additional dependencies
-paru --noconfirm -S inter-font imagemagick thunar papirus-icon-theme bluez bluez-utils
+sudo paru --noconfirm -S inter-font imagemagick thunar papirus-icon-theme bluez bluez-utils
 # enable some services
 systemctl --user enable mpd.service
 
