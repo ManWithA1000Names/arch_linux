@@ -4,9 +4,7 @@
 ### Base Install ###
 ####################
 git clone https://github.com/christitustech/archtitus
-cd archtitus || exit 1
-./archtitus.sh
-cd ..
+./archtitus/archtitus.sh
 new_user="$(ls /mnt/home)"
 new_home="/mnt/home/$new_user"
 mv arch_linux_setup.sh "$new_home"
