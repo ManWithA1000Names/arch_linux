@@ -12,7 +12,6 @@ rustup default stable
 ####################
 ### Install Paru ###
 ####################
-sudo pacman -S --needed base-devel
 git clone https://aur.archlinux.org/paru.git
 cd paru || exit 1
 if ! makepkg -si --noconfirm; then
@@ -20,6 +19,7 @@ if ! makepkg -si --noconfirm; then
 	exit 1
 fi
 cd ..
+rm -rf ./paru
 paru --gendb
 ####### end ########
 
@@ -93,32 +93,31 @@ paru --noconfirm -S picom-git wezterm rofi acpi acpid acpi_call upower lxappeara
 	pipewire pipewire-alsa pipewire-pulse pamixer brightnessctl feh maim \
 	mpv mpd mpc mpdris2 python-mutagen ncmpcpp playerctl starship --needed
 # additional dependencies
-sudo paru --noconfirm -S inter-font imagemagick thunar papirus-icon-theme bluez bluez-utils
+paru --noconfirm -S inter-font imagemagick thunar papirus-icon-theme bluez bluez-utils
 # enable some services
-systemctl --user enable mpd.service
+sudo systemctl --user enable mpd.service
 
 # my dotfiles
 git clone http://git.my.cloud/ManWithA1000Names/.dotfiles.git
 cd .dotfiles || exit 1
-fish -c ./deploy.fish
+fish ./deploy.fish
 cd ..
 # rxhyn dotfiles
 git clone --recurse-submodules --depth 1 https://github.com/manwitha1000names/dotfiles-rxhyn.git
 if cd dotfiles-rxhyn; then
-	git submodule --remote --merge
+	git submodule update --remote --merge
 	mkdir -p ~/.config/
 	mv config/* ~/.config/
 	mv misc/home/.config/starship ~/.config/
 	mv misc/home/.Xresources ~
-	echo "Xcursor.size: 27" >>.Xresources
-	echo "Xft.dpi: 108" >>.Xresources
+	echo "Xcursor.size: 27" >>~/.Xresources
+	echo "Xft.dpi: 108" >>~/..Xresources
 	mkdir -p ~/.fonts
 	mv misc/fonts/* ~/.fonts/
 	sudo mv misc/themes/gtk/Aesthetic-Night/* /usr/share/themes/
 	mkdir -p ~/.config/gtk-4.0
 	mv misc/themes/gtk/Aesthetic-Night-GTK4/* ~/.config/gtk-4.0/
-	mkdir ~/.config/gkt-3.0
-	echo "gtk-decoration-layout=close,maximize,minimize:menu" >~/.config/gtk-3.0/settings.ini
+	mkdir -p ~/.config/gtk-3.0
 	mkdir -p ~/.themes
 	mv misc/themes/kvantum ~/.themes/
 	cd ..
@@ -132,19 +131,12 @@ fi
 tar -xf ./Kripton.tar.xz
 sudo mv ./Kripton /usr/share/themes/
 rm -rf ./Kripton.tar.xz
-sudo cp -rf themes/gtk/Aesthetic-Night/* /usr/share/themes/
-cp -rf themes/gtk/Aesthetic-Night-GTK4/* "$HOME/.config/gkt-4.0"
-echo "gtk-decoration-layout=close,maximize,minimize:menu" >"$HOME/.config/gtk-3.0/settings.ini"
-# kvantum theme
-mkdir -p "$HOME/.themes"
-cp -rf themes/kvantum "$HOME/.themes"
 # cursor
 tar -zxvf volantes_light_cursors.tar.gz
 sudo mv volantes_light_cursors /usr/share/icons
 echo "[Icon Theme]" | sudo tee /usr/share/icons/default/index.theme
 echo "Inherits=volantes_light_cursors" | sudo tee -a /usr/share/icons/default/index.theme
 rm -rf ./volantes_light_cursors.tar.gz
-rm -rf ./volantes_light_cursors
 rm -rf themes
 #######################################################
 
@@ -176,13 +168,11 @@ paru --noconfirm -S "noto-fonts" "noto-fonts-emoji" "nerd-fonts-fira-code"
 ######################################
 ### Installing additional Programs ###
 ######################################
-if [[ ! -d ".local/bin" ]]; then
-	mkdir -p .local/bin
-fi
+mkdir -p .local/bin
 paru --noconfirm -S signal-desktop vlc steam gimp github-cli fuse2 gopass git-credential-gopass \
 	zathura zathura-pdf-poppler \
-	albert-bin popcorntime-bin onlyoffice-bin stacer
-yarn global add webtorrent-cli
+	albert-bin popcorntime-bin onlyoffice-bin
+yarn global add webtorrent-cli webtorrent
 ############### end ##################
 
 #########################
@@ -246,4 +236,5 @@ wait
 ### cleanup ###
 ###############
 rm -f "$HOME/arch_linux_setup.sh"
+rm -rf ArchTitus
 ##### end #####
