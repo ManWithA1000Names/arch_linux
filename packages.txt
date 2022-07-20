@@ -77,7 +77,7 @@ github-cli
 fuse2
 gopass
 git-credential-gopass
-zatura
+zathura
 zathura-pdf-poppler
 albert-bin
 popcorntime-bin
