@@ -2,6 +2,8 @@
 
 cd "$HOME" || exit 1
 
+set -e
+
 ####################
 ### Install Rust ###
 ####################
@@ -35,7 +37,9 @@ export PATH="$HOME/.local/bin:$PATH"
 ############################
 ### Install ALL Packages ###
 ############################
-paru --noconfirm -S <./packages.txt
+while read -r line; do
+	paru --noconfirm -S "$line" --needed
+done <./packages.txt
 ############ end ###########
 
 ##################
@@ -179,6 +183,12 @@ rm ./install.sh
 mkdir -p ~/.julia/environments/nvim-lspconfig/
 julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("LanguageServer")'
 ### end ###
+
+#####################################
+### Setup up Chromecast discovery ###
+#####################################
+
+############## end ##################
 
 echo "cleaning up..."
 wait

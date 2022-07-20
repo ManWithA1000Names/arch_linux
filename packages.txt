@@ -46,7 +46,6 @@ starship
 inter-font
 imagemagick
 thunar
-papirus-icon-theme
 bluez
 bluez-utils
 kitty
@@ -87,3 +86,7 @@ neovim
 shellcheck
 firefox
 thunderbird
+libmicrodns
+protobuf
+hicolor-icon-theme
+papirus-icon-theme
