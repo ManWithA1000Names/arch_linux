@@ -79,7 +79,7 @@ gopass
 git-credential-gopass
 zathura
 zathura-pdf-poppler
-albert-bin
+albert-git
 popcorntime-bin
 onlyoffice-bin
 neovim

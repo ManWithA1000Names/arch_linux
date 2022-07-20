@@ -38,9 +38,6 @@ export PATH="$HOME/.local/bin:$PATH"
 ### Install ALL Packages ###
 ############################
 paru --noconfirm -S $(tr '\n' ' ' <./packages.txt)
-# while read -r line; do
-# 	paru --noconfirm -S "$line" --needed
-# done <./packages.txt
 ############ end ###########
 
 ##################
