@@ -21,6 +21,6 @@ else
 fi
 echo -n "remove install script? [Y/n]"
 read -r line
-if ! [[ "$line" == "n" || "$line" == "no" || "$line" == "NO" || "$line" == "No" || "$line" == "nO" ]]; then
+if ! [[ "${line,,}" == "n" || "${line,,}" == "no" ]]; then
 	rm -rf ~/install_photo_gimp.sh
 fi

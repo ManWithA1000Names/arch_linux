@@ -17,6 +17,7 @@ mv avatar.png "$new_home"
 mv background.jpg "$new_home"
 mv Kripton.tar.xz "$new_home"
 mv volantes_light_cursors.tar.gz "$new_home"
+mv packages.txt "$new_home"
 sed -i "s/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/" /mnt/etc/sudoers
 arch-chroot /mnt /usr/bin/runuser -u "$new_user" -- "/home/$new_user/arch_linux_setup.sh"
 sed -i "s/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/" /mnt/etc/sudoers

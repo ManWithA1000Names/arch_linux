@@ -29,24 +29,29 @@ paru --gendb
 paru --noconfirm -Sy archlinux-keyring
 ######## end #########
 
-####################
-### Install FISH ###
-####################
-paru --noconfirm -Sy fish
+mkdir -p .local/bin
+export PATH="$HOME/.local/bin:$PATH"
+
+############################
+### Install ALL Packages ###
+############################
+paru --noconfirm -S <./packages.txt
+############ end ###########
+
+##################
+### Setup FISH ###
+##################
 sudo usermod --shell /usr/bin/fish "$USER"
 fish -c "set -U fish_greeting"
 ####### end ########
 
 ################################
-### Install Xorg && LightDM ####
+### Setup Xorg && LightDM ####
 ################################
-# install
-paru --noconfirm -S lightdm xorg lightdm-webkit2-greeter lightdm-webkit-theme-aether
-
 # xorg stuff
 # echo "xrandr --output HDMI-0 --off --output HDMI-1 --off --output HDMI-2 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3440x1440 --pos 721x0 --rotate normal --output DP-3 --off --output DP-4 --mode 5120x1440 --pos 0x1440 --rotate normal --output DP-5 --off" |  sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
-echo "xrandr -s 1920x1080" | sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
-sudo chmod +x /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
+# echo "xrandr -s 1920x1080" | sudo tee /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
+# sudo chmod +x /etc/X11/xinit/xinitrc.d/45custom_xrandr-settings.sh
 
 # lightdm stuff
 sudo sed -i 's/#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
@@ -69,33 +74,21 @@ sudo systemctl enable lightdm
 #######################
 ### NVIDIA Drivers ####
 #######################
-# paru -S nvidia
 # nvidia-xconfig
-paru --noconfirm -S "xf86-video-fbdev"
 ######### end #########
 
-#####################################
-### Install Programming Languages ###
-#####################################
-paru --noconfirm -S go lua yarn julia python-pip jdk-openjdk
+###########################################
+### Install/Setup Programming Languages ###
+###########################################
 yarn global add typescript
 go env -w "GOPRIVATE=github.com/ManWithA1000Names/*,git.my.cloud/*"
 ############### end #################
 
-##################################################
-### Install Awesome and the rxhyn dependencies ###
-##################################################
-# awesomewm
-paru --noconfirm -S awesome-git
-# core dependencies
-paru --noconfirm -S picom-git wezterm rofi acpi acpid acpi_call upower lxappearance-gtk3 \
-	jq inotify-tools polkit-gnome xdotool xclip gpick ffmpeg blueman redshift \
-	pipewire pipewire-alsa pipewire-pulse pamixer brightnessctl feh maim \
-	mpv mpd mpc mpdris2 python-mutagen ncmpcpp playerctl starship --needed
-# additional dependencies
-paru --noconfirm -S inter-font imagemagick thunar papirus-icon-theme bluez bluez-utils
-# enable some services
+#########################
+### Start mpd service ###
+#########################
 sudo systemctl --user enable mpd.service
+######### end ###########
 
 # my dotfiles
 git clone http://git.my.cloud/ManWithA1000Names/.dotfiles.git
@@ -140,47 +133,11 @@ rm -rf ./volantes_light_cursors.tar.gz
 rm -rf themes
 #######################################################
 
-############################
-### Installing terminals ###
-############################
-paru --noconfirm -S kitty alacritty
-########### end ############
-
-########################
-### Installing Utils ###
-########################
-# rust utils
-paru --noconfirm -S exa fd ripgrep
-# search / viewing
-paru --noconfirm -S bat fzf peco htop openssh man-db neofetch netplan nvtop
-# zip utils
-paru --noconfirm -S zip unzip
-# xdg
-paru --noconfirm -S xdg-utils xdg-user-dirs
-######## end ###########
-
-########################
-### Installing fonts ###
-########################
-paru --noconfirm -S "noto-fonts" "noto-fonts-emoji" "nerd-fonts-fira-code"
-######### end ##########
-
 ######################################
 ### Installing additional Programs ###
 ######################################
-mkdir -p .local/bin
-paru --noconfirm -S signal-desktop vlc steam gimp github-cli fuse2 gopass git-credential-gopass \
-	zathura zathura-pdf-poppler \
-	albert-bin popcorntime-bin onlyoffice-bin
 yarn global add webtorrent-cli webtorrent
 ############### end ##################
-
-#########################
-### Text Editor Setup ###
-#########################
-# neovim
-paru --noconfirm -S neovim
-########## end ##########
 
 #################
 ### XDG_STUFF ###
@@ -195,9 +152,9 @@ fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/
 fish -c "fisher install jethrokuan/z ilancosman/tide"
 ######## end ########
 
-#########################
-### edit config files ###
-#########################
+#################
+### edit path ###
+#################
 fish -c "set -U fish_user_paths $HOME/.local/bin \$fish_user_paths"
 fish -c "set -U fish_user_paths $HOME/.yarn/bin \$fish_user_paths"
 fish -c "set -U fish_user_paths $HOME/go/bin \$fish_user_paths"
@@ -214,7 +171,6 @@ pip install git+https://github.com/psf/black pynvim
 cargo install stylua
 # linters
 pip install flake8 codespell
-paru --noconfirm -S shellcheck
 go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 wget https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh
 chmod +x ./install.sh
@@ -223,12 +179,6 @@ rm ./install.sh
 mkdir -p ~/.julia/environments/nvim-lspconfig/
 julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("LanguageServer")'
 ### end ###
-
-###############
-### Browser ###
-###############
-paru --noconfirm -S firefox thunderbird
-##### end #####
 
 echo "cleaning up..."
 wait
