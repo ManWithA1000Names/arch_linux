@@ -18,7 +18,7 @@ acpi
 acpid
 acpi_call
 upower
-lxappearance-gkt3
+lxappearance-gtk3
 jq
 inotify-tools
 polkit-gnome
