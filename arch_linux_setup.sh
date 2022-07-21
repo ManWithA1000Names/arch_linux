@@ -195,4 +195,5 @@ wait
 ###############
 rm -f "$HOME/arch_linux_setup.sh"
 rm -rf ArchTitus
+rm -f ./*.log ./*.txt
 ##### end #####
