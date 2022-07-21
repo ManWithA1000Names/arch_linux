@@ -100,7 +100,7 @@ cd ..
 # rxhyn dotfiles
 git clone --recurse-submodules --depth 1 https://github.com/manwitha1000names/dotfiles-rxhyn.git
 if cd dotfiles-rxhyn; then
-	git submodule update --remote --merge
+	# git submodule update --remote --merge
 	mkdir -p ~/.config/
 	mv config/* ~/.config/
 	mv misc/home/.config/starship ~/.config/
