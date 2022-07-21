@@ -185,7 +185,7 @@ julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("Lan
 #####################################
 ### Setup up Chromecast discovery ###
 #####################################
-
+sudo sed -i 's/mymachines/mymachines mdns_minimal [NOTFOUND=return]/' /etc/nsswitch.conf
 ############## end ##################
 
 echo "cleaning up..."
