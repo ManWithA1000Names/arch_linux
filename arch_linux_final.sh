@@ -8,5 +8,6 @@ git clone https://github.com/manwitha1000names/lvim_config ~/.config/lvim
 sed -i 's/source("debug")/-- source("debug")/' ~/.config/lvim/config.lua
 lvim +PackerSync +q
 sed -i 's/-- source("debug")/source("debug")' ~/.config/lvim/config.lua
+gh auth login
 wait
-cd ~ && sudo rm -rf ./arch_linux_final.sh
+cd ~ && rm -rf ./arch_linux_final.sh
