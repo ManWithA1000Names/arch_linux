@@ -106,7 +106,7 @@ if cd dotfiles-rxhyn; then
 	mv misc/home/.config/starship ~/.config/
 	mv misc/home/.Xresources ~
 	echo "Xcursor.size: 27" >>~/.Xresources
-	echo "Xft.dpi: 108" >>~/..Xresources
+	echo "Xft.dpi: 108" >>~/.Xresources
 	mkdir -p ~/.fonts
 	mv misc/fonts/* ~/.fonts/
 	sudo mv misc/themes/gtk/Aesthetic-Night/* /usr/share/themes/
