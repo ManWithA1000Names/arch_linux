@@ -90,3 +90,4 @@ libmicrodns
 protobuf
 hicolor-icon-theme
 papirus-icon-theme
+kvantum
