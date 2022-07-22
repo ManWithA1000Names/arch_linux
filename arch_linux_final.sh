@@ -2,7 +2,8 @@
 
 timedatectl set-timezone "Europe/Athens"
 lxappearance &>/dev/null &
-kvantum &>/dev/null &
+kvantummanager &>/dev/null &
+vlc &>/dev/null &
 echo "gtk-decoration-layout=close,maximize,minimize:menu" >>~/.config/gtk-3.0/settings.ini
 rm -rf ~/.config/lvim/
 git clone https://github.com/manwitha1000names/lvim_config ~/.config/lvim
