@@ -96,3 +96,4 @@ rclone
 zoxide
 starship
 brave-bin
+nushell
