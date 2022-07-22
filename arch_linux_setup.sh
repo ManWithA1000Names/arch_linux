@@ -37,7 +37,7 @@ export PATH="$HOME/.local/bin:$PATH"
 ############################
 ### Install ALL Packages ###
 ############################
-paru --noconfirm -S $(tr '\n' ' ' <./packages.txt)
+paru --noconfirm -S $(tr '\n' ' ' <./packages.txt) --needed
 ############ end ###########
 
 ##################
