@@ -151,7 +151,6 @@ xdg-mime default org.pwmt.zathura-pdf-poppler.desktop application/pdf
 ### Fish programs ###
 #####################
 fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
-fish -c "fisher install jethrokuan/z ilancosman/tide"
 ######## end ########
 
 #################

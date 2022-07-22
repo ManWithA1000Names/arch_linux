@@ -93,3 +93,6 @@ papirus-icon-theme
 kvantum
 visual-studio-code-bin
 rclone
+zoxide
+starship
+brave-bin
