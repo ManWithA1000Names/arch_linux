@@ -118,6 +118,7 @@ if cd dotfiles-rxhyn; then
 	cd ..
 	rm -rf dotfiles-rxhyn
 fi
+mkdir -p Drives/NextCloud Drives/OneDrive Drives/GoogleDrive
 
 #######################
 ### Desktop Theming ###
