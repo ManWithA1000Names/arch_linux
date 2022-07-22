@@ -92,3 +92,4 @@ hicolor-icon-theme
 papirus-icon-theme
 kvantum
 visual-studio-code-bin
+rclone
