@@ -14,6 +14,7 @@ rustup default stable
 ####################
 ### Install Paru ###
 ####################
+sudo sed -i 's/#Color/Color/' /etc/pacman.conf 
 git clone https://aur.archlinux.org/paru.git
 cd paru || exit 1
 if ! makepkg -si --noconfirm; then
