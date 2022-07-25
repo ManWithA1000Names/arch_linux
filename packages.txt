@@ -98,3 +98,5 @@ starship
 brave-bin
 nushell
 helix
+pavucontrol
+virt-manager

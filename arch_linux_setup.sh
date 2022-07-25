@@ -76,7 +76,7 @@ sudo systemctl enable lightdm
 #######################
 ### NVIDIA Drivers ####
 #######################
-# nvidia-xconfig
+# paru -S nvidia --noconfirm && nvidia-xconfig
 ######### end #########
 
 ###########################################
@@ -98,7 +98,7 @@ cd .dotfiles || exit 1
 fish ./deploy.fish
 cd ..
 # rxhyn dotfiles
-git clone --recurse-submodules --depth 1 https://github.com/manwitha1000names/dotfiles-rxhyn.git
+git clone --recurse-submodules --depth 1 http://git.my.cloud/manwitha1000names/dotfiles-rxhyn.git
 if cd dotfiles-rxhyn; then
 	# git submodule update --remote --merge
 	mkdir -p ~/.config/

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo echo "Finilizing system..."
 timedatectl set-timezone "Europe/Athens"
 lxappearance &>/dev/null &
 kvantummanager &>/dev/null &
@@ -10,6 +11,8 @@ git clone https://github.com/manwitha1000names/lvim_config ~/.config/lvim
 sed -i 's/source("debug")/-- source("debug")/' ~/.config/lvim/config.lua
 lvim +PackerSync +q
 sed -i 's/-- source("debug")/source("debug")' ~/.config/lvim/config.lua
+./install_photo_gimp.sh &
+./setup_bluetooth.sh &
 gh auth login
 wait
 echo "gtk-decoration-layout=close,maximize,minimize:menu" >>~/.config/gtk-3.0/settings.ini
