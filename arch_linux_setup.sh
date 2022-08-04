@@ -2,7 +2,7 @@
 
 cd "$HOME" || exit 1
 
-sudo pacman -R awesome
+sudo pacman -R awesome --noconfirm
 
 ####################
 ### Install Rust ###
