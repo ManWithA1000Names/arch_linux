@@ -100,3 +100,5 @@ nushell
 helix
 pavucontrol
 virt-manager
+gnome-keyring
+libgnome-keyring
