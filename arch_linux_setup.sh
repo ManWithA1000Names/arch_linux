@@ -47,6 +47,7 @@ paru --noconfirm -S $(tr '\n' ' ' <./packages.txt) --needed
 sudo usermod --shell /usr/bin/fish "$USER"
 fish -c "set -U fish_greeting"
 ####### end ########
+paru -R virtualbox --noconfirm
 
 ################################
 ### Setup Xorg && LightDM ####
